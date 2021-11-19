@@ -1,0 +1,829 @@
+modules:
+- {name: globalVariables, code: 'import anvil.server
+
+    import anvil.users
+
+    import anvil.tables as tables
+
+    import anvil.tables.query as q
+
+    from anvil.tables import app_tables
+
+    # This is a module.
+
+    # You can define variables and functions here, and use them from any form. For
+    example, in a top-level form:
+
+    #
+
+    #    from . import Module1
+
+    #
+
+    #    Module1.say_hello()
+
+    #
+
+
+    ticketInfoList = []
+
+    pickedDate = None', id: 6K4YZNE4ECR2VPXE4HGM6HW4KFENECDB}
+exported_table_schema:
+- python_name: users
+  client: full
+  server: full
+  name: Users
+  columns:
+    s8tHmXX9H_I=:
+      name: enabled
+      type: bool
+      admin_ui: {order: 1, width: 100}
+    RQmX_8gNeWU=:
+      name: email
+      type: string
+      admin_ui: {order: 0, width: 200}
+    cImSS9mpc+k=:
+      name: password_hash
+      type: string
+      admin_ui: {order: 2, width: 200}
+    mnieUcPvTAk=:
+      name: last_login
+      type: datetime
+      admin_ui: {order: 3, width: 200}
+    tnqSTWsYuw4=:
+      name: n_password_failures
+      type: number
+      admin_ui: {order: 4, width: 200}
+    0SZ2sJRhJpc=:
+      name: Ticket
+      type: simpleObject
+      admin_ui: {order: 7, width: 835}
+    rCR_shvJzS0=:
+      name: signed_up
+      type: datetime
+      admin_ui: {order: 7, width: 200}
+    4ywwIWzQ1gs=:
+      name: Name
+      type: string
+      admin_ui: {order: 5, width: 200}
+    t7U0zOajcAA=:
+      name: IsUpgraded
+      type: bool
+      admin_ui: {order: 8, width: 200}
+  id: 176611
+- python_name: traintimes
+  client: search
+  server: full
+  name: TrainTimes
+  columns:
+    7g1WjEBDJzo=:
+      name: To
+      type: string
+      admin_ui: {order: 1, width: 200}
+    Chp9nOYxy64=:
+      name: Time
+      type: string
+      admin_ui: {order: 3, width: 200}
+    t+JtrofB9+Q=:
+      name: From
+      type: string
+      admin_ui: {order: 0, width: 200}
+  id: 177060
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/anvil/users.yml
+  client_config: {allow_signup: true, enable_automatically: true, use_email: true,
+    confirm_email: false, email_from_address: eliaskvamme@outlook.com}
+  server_config: {user_table: users}
+forms:
+- is_package: true
+  container:
+    type: HtmlTemplate
+    properties: {html: '@theme:dashboard.html'}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: content_panel
+    layout_properties: {slot: default}
+    components:
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Delete ticket, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: button_1
+      layout_properties: {grid_position: 'RDMFWK,VSCQPT'}
+      event_bindings: {click: button_1_click}
+  code: "from ._anvil_designer import Test2Template\nfrom anvil import *\nimport anvil.server\n\
+    import anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query as\
+    \ q\nfrom anvil.tables import app_tables\nfrom ..Test1 import Test1\n\n\nclass\
+    \ Test2(Test2Template):\n  def __init__(self, **properties):\n    # Set Form properties\
+    \ and Data Bindings.\n    self.init_components(**properties)\n\n    # Any code\
+    \ you write here will run when the form opens.\n    \n    #Test1.getListe(Test1())\n\
+    \    #print(var)\n    \n  def cancelTicket(self):\n    user = anvil.users.get_user()\n\
+    \    #anvil.server.call('removeUpgradedTicket')\n    user['Ticket'] = None\n \
+    \     \n    \n\n  def button_1_click(self, **event_args):\n    user = anvil.users.get_user()\n\
+    \    print(user['Ticket']['to'])\n    print(\"H\xe5per den er slettet n\xe5\"\
+    )\n\n"
+  class_name: Test2
+  id: V2AWGRP3HZFVH2YEZ4BWWRPPTJ3VFCDX
+- container:
+    type: ColumnPanel
+    properties: {col_widths: '{}'}
+    event_bindings: {}
+  components:
+  - type: FileLoader
+    properties: {}
+    name: file_loader_1
+    layout_properties: {grid_position: 'LXEBUD,LFDWYN'}
+    event_bindings: {change: file_loader_1_change}
+  is_package: true
+  code: "from ._anvil_designer import AddTimeTable_NOTUSEDTemplate\nfrom anvil import\
+    \ *\nimport anvil.server\nimport anvil.users\nimport anvil.tables as tables\n\
+    import anvil.tables.query as q\nfrom anvil.tables import app_tables\n\n\n\n\n\
+    class AddTimeTable_NOTUSED(AddTimeTable_NOTUSEDTemplate):\n  def __init__(self,\
+    \ **properties):\n    # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
+    \n    # Any code you write here will run when the form opens.\n  \n\n  def file_loader_1_change(self,\
+    \ file, **event_args):\n    anvil.server.call('store_data',file)\n\n"
+  class_name: AddTimeTable_NOTUSED
+  id: EHI7ANSJY2WUSTQNM6E46U42DIOS2UWF
+- is_package: true
+  container:
+    type: HtmlTemplate
+    properties: {html: '@theme:dashboard.html'}
+    event_bindings: {}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: content_panel
+    layout_properties: {slot: default}
+    components:
+    - type: ColumnPanel
+      properties: {col_widths: '{}'}
+      name: column_panel_1
+      layout_properties: {grid_position: 'AJFVXO,ZCKFQC'}
+      event_bindings: {}
+      components:
+      - type: RichText
+        properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+          foreground: '', visible: true, font_size: null, content: Enter Full Name,
+          font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+          format: markdown}
+        name: rich_text_1
+        layout_properties: {grid_position: 'SEMATJ,AQVSZE'}
+        components: []
+    - type: TextArea
+      properties: {role: null, align: left, height: 57.55000000000001, tooltip: '',
+        placeholder: Enter Full name here, border: '', enabled: true, foreground: '',
+        visible: true, text: '', font_size: null, auto_expand: false, font: '', spacing_above: small,
+        spacing_below: small, italic: false, background: '', bold: false, underline: false}
+      name: text_area_1
+      layout_properties: {grid_position: 'EIHBEP,YCZJNT', slot: default}
+      event_bindings: {}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Name Entered, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: button_1
+      layout_properties: {grid_position: 'IXZJHD,NPWWES'}
+      event_bindings: {click: button_1_click}
+  code: "from ._anvil_designer import UserNameFormTemplate\nfrom anvil import *\n\
+    import anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport\
+    \ anvil.tables.query as q\nfrom anvil.tables import app_tables\n\nclass UserNameForm(UserNameFormTemplate):\n\
+    \  def __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
+    \    self.init_components(**properties)\n\n    # Any code you write here will\
+    \ run when the form opens.\n    \n\n  def button_1_click(self, **event_args):\n\
+    \    \"\"\"This method is called when the button is clicked\"\"\"\n    user =\
+    \ user = anvil.users.get_user()\n    user.update(Name=self.text_area_1.text)\n\
+    \    open_form('MainForm')\n    \n\n"
+  class_name: UserNameForm
+  id: LFESCHQ7GIVYLPHR2GPPLGVXKGDWMS64
+- is_package: true
+  container:
+    type: HtmlTemplate
+    properties: {html: '@theme:dashboard.html'}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: content_panel
+    layout_properties: {slot: default}
+    components:
+    - type: DataGrid
+      properties:
+        role: null
+        columns:
+        - {id: VYLKMQ, title: From, data_key: From}
+        - {id: UKBKKN, title: To, data_key: To}
+        - {id: CIUPKY, title: Time, data_key: Time}
+        auto_header: true
+        tooltip: ''
+        border: ''
+        foreground: ''
+        rows_per_page: 20
+        visible: true
+        wrap_on: never
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        background: ''
+      name: data_grid_1
+      layout_properties: {grid_position: 'SKCSMI,BKBRCJ'}
+      components:
+      - type: RepeatingPanel
+        properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
+          visible: true, spacing_above: none, spacing_below: none, item_template: TimeTables.RowTemplate1,
+          background: ''}
+        name: repeating_panel_1
+        layout_properties: {pinned: false}
+        event_bindings: {}
+      event_bindings: {}
+  - type: RichText
+    properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+      foreground: '', visible: true, font_size: null, content: TimeTable - Click on train you want to buy ticket for,
+      font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+      format: markdown}
+    name: rich_text_1
+    layout_properties: {slot: title}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: BackButton
+    layout_properties: {slot: sidebar}
+    event_bindings: {click: BackButton_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: LogOut, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: LogOut
+    layout_properties: {slot: sidebar}
+    event_bindings: {click: LogOut_click}
+  code: "from ._anvil_designer import TimeTablesTemplate\nfrom anvil import *\nimport\
+    \ anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query\
+    \ as q\nfrom anvil.tables import app_tables\n\nclass TimeTables(TimeTablesTemplate):\n\
+    \  def __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
+    \    self.init_components(**properties)\n    \n    self.repeating_panel_1.items\
+    \ = anvil.server.call('get_traintimes')\n\n  def BackButton_click(self, **event_args):\n\
+    \    open_form('MainForm.DatePicker')\n\n  def LogOut_click(self, **event_args):\n\
+    \    anvil.users.logout()\n    open_form('LoginForm')\n\n\n  "
+  class_name: TimeTables
+  id: HWIZPWUM5MY3PJJAIL2ZZ7AZN2HOJZNL
+- container:
+    type: DataRowPanel
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      auto_display_data: true, visible: true, font_size: null, font: '', spacing_above: none,
+      spacing_below: none, italic: false, background: '', bold: false, underline: false}
+  components:
+  - type: Link
+    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: From, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+      italic: false, background: '', bold: false, underline: false, icon: ''}
+    name: link_1
+    layout_properties: {column: VYLKMQ}
+    event_bindings: {click: link_1_click}
+    data_bindings:
+    - {property: text, code: 'self.item[''From'']'}
+  is_package: true
+  code: "from ._anvil_designer import RowTemplate1Template\nfrom anvil import *\n\
+    import anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport\
+    \ anvil.tables.query as q\nfrom anvil.tables import app_tables\nfrom ... import\
+    \ globalVariables\nfrom datetime import datetime\nfrom ... import globalVariables\n\
+    \n\n\nclass RowTemplate1(RowTemplate1Template):\n  def __init__(self, **properties):\n\
+    \    # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
+    \n    # Any code you write here will run when the form opens.\n\n  def link_1_click(self,\
+    \ **event_args):\n    alert(f\"From: {self.item['From']} \\nTo:{self.item['To']}\
+    \ \\nTime: {self.item['Time']}\")\n    global ticketInfoList\n    \n    \n   \
+    \ globalVariables.ticketInfoList = []\n    globalVariables.ticketInfoList.append(self.item['To'])\n\
+    \    globalVariables.ticketInfoList.append(self.item['From'])\n    globalVariables.ticketInfoList.append(f\"\
+    {self.item['Time']}, {globalVariables.pickedDate}\")\n    \n    #date_time = self.item['Time'].strftime(\"\
+    %H:%M:%S, %m/%d/%Y\")\n    #globalVariables.ticketInfoList.append(date_time)\n\
+    \n    #ticketList.append(anvil.users.get_user()['Name'])\n    \n    open_form('BuyTicketForm')\n\
+    \    \n\n"
+  class_name: TimeTables.RowTemplate1
+  id: CBOYXIHDXL2R2L4VIY3PU2DI7PLZMXP6
+- is_package: true
+  container:
+    type: HtmlTemplate
+    properties: {html: '@theme:dashboard.html'}
+    event_bindings: {show: form_show}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: content_panel
+    layout_properties: {slot: default}
+    components:
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Login, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: LoginButton
+      layout_properties: {grid_position: 'ZZREXX,JCBJHH'}
+      event_bindings: {click: LoginButton_click}
+    - type: Spacer
+      properties: {height: 32}
+      name: spacer_1
+      layout_properties: {grid_position: 'JKNMCE,PSDEZV'}
+      event_bindings: {}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Logout, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: LogoutButton
+    layout_properties: {slot: sidebar}
+    event_bindings: {click: LogoutButton_click}
+  - type: RichText
+    properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+      foreground: '', visible: true, font_size: null, content: Welcome - please log in,
+      font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+      format: markdown}
+    name: rich_text_1
+    layout_properties: {slot: title}
+  code: "from ._anvil_designer import LoginFormTemplate\nfrom anvil import *\nimport\
+    \ anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query as q\n\
+    from anvil.tables import app_tables\nimport anvil.server\n\nclass LoginForm(LoginFormTemplate):\n\
+    \  def __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
+    \    self.init_components(**properties)\n\n    # Any code you write here will\
+    \ run when the form opens.\n    #anvil.server.call('say_hello','elias')\n    \n\
+    \    \n  \n  def LogoutButton_click(self, **event_args):\n    anvil.users.logout()\n\
+    \n    '''  def button_2_click(self, **event_args):\n    anvil.users.login_with_form()\n\
+    \    self.checkUserName()\n    #if anvil.users.get_user() != false:\n    \n  \
+    \  #app_tables.users.add_row(First Name= \"Elias\")\n    '''\n    \n\n  def checkUserName(self):\n\
+    \    user = anvil.users.get_user()#['email']\n    userName = user['Name']\n  \
+    \  if userName == None:\n      print(\"Ingen Navn\")\n      open_form('UserNameForm')\n\
+    \      \n    else:\n      open_form('MainForm')\n    \n\n  def LoginButton_click(self,\
+    \ **event_args):\n    anvil.users.login_with_form()\n    self.checkUserName()\n\
+    \n  def form_show(self, **event_args):\n    \"\"\"This method is called when the\
+    \ HTML panel is shown on the screen\"\"\"\n    pass\n\n\n\n  \n\n\n\n\n  \n\n\n\
+    \n"
+  class_name: LoginForm
+  id: JBAKQL5DBY7FWOZ5ACHBH6I7JBHRDE66
+- is_package: true
+  container:
+    type: HtmlTemplate
+    properties: {html: '@theme:dashboard.html'}
+    event_bindings: {}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: content_panel
+    layout_properties: {slot: default}
+    components:
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: Hello - buy tickets please, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_1
+      layout_properties: {grid_position: 'GFQGHO,CIEAKL'}
+      event_bindings: {}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: See departures and buy ticket, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: buyTicketButton
+      layout_properties: {grid_position: 'ZHIRHA,MWKQQH'}
+      event_bindings: {click: buyTicketButton_click}
+    - type: ColumnPanel
+      properties: {col_widths: '{}'}
+      name: column_panel_1
+      layout_properties: {grid_position: 'BCBWXJ,PVRAUS'}
+      event_bindings: {hide: column_panel_1_hide}
+      components:
+      - type: Button
+        properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+          foreground: '', visible: true, text: Upgrade ticket, font_size: null, font: '',
+          spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+          background: '', bold: false, underline: false, icon: ''}
+        name: TicketUpgradeButton
+        layout_properties: {grid_position: 'PJPHMK,SPVRJC'}
+        event_bindings: {click: TicketUpgradeButton_click}
+    - type: ColumnPanel
+      properties: {col_widths: '{}'}
+      name: column_panel_2
+      layout_properties: {grid_position: 'TFXKSD,YBZBFW'}
+      components:
+      - type: Button
+        properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+          foreground: '', visible: true, text: Show Ticket, font_size: null, font: '',
+          spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+          background: '', bold: false, underline: false, icon: ''}
+        name: ShowTicketButton
+        layout_properties: {grid_position: 'PQMBFR,OLAYIC'}
+        event_bindings: {click: ShowTicketButton_click}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Train Ticket, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_2
+    layout_properties: {slot: title}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Logout, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: LogoutButton
+    layout_properties: {slot: sidebar}
+    event_bindings: {click: LogoutButton_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Cancel Ticket, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: CancelTicketButton
+    layout_properties: {slot: default}
+    event_bindings: {click: CancelTicketButton_click}
+  code: "from ._anvil_designer import MainFormTemplate\nfrom anvil import *\nimport\
+    \ anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query\
+    \ as q\nfrom anvil.tables import app_tables\nfrom .. import globalVariables\n\n\
+    \n\n\nclass MainForm(MainFormTemplate):\n  def __init__(self, **properties):\n\
+    \    # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
+    \n    # Any code you write here will run when the form opens.\n    #self.checkUser()\n\
+    \    \n\n  def LogoutButton_click(self, **event_args):\n    anvil.users.logout()\n\
+    \    open_form('LoginForm')\n\n    \n  def buyTicketButton_click(self, **event_args):\n\
+    \    open_form('MainForm.DatePicker')\n\n  def ShowTicketButton_click(self, **event_args):\n\
+    \    global ticketInfoList\n    user = anvil.users.get_user()\n    if user['Ticket']\
+    \ == None:\n      alert(\"You have no ticket, please buy one\")\n    elif user['IsUpgraded']\
+    \ == True:\n      alert(f\"Name: {user['Name']}\\nTicket type: Upgraded {user['Ticket']['type']}\
+    \ \\nTicket valid on the train\\nfrom {user['Ticket']['tFrom']} to {user['Ticket']['to']}\
+    \ \\nwith departure {user['Ticket']['time']}\")\n    else:\n      alert(f\"Name:\
+    \ {user['Name']}\\nTicket type: {user['Ticket']['type']} \\nTicket valid on the\
+    \ train\\nfrom {user['Ticket']['tFrom']} to {user['Ticket']['to']} \\nwith departure\
+    \ {user['Ticket']['time']}\")\n\n      \n  def TicketUpgradeButton_click(self,\
+    \ **event_args):\n      \n    user = anvil.users.get_user()\n    ticketInfo =\
+    \ anvil.users.get_user()['Ticket']\n    if ticketInfo == None:\n      alert(\"\
+    You need to buy a ticket first\")\n    else:\n      anvil.server.call('upgradeTicket')\n\
+    \      alert(\"You are upgraded, enjoy your trip!\")\n    \n\n  def CancelTicketButton_click(self,\
+    \ **event_args):\n    user = anvil.users.get_user()\n    if user['Ticket'] ==\
+    \ None:\n      alert(\"You don't have a ticket to cancel\")\n    elif confirm(\"\
+    Are you sure you want to cancel your ticket?\\nThis cannot be undone\") == True:\n\
+    \      anvil.server.call('cancelTicket')\n      alert(\"Your ticket was cancelled\"\
+    )\n    else:\n      alert(\"Your ticket was not cancelled\")\n    \n\n\n\n\n"
+  class_name: MainForm
+  id: 7T34C7PZ2JXGUWKWEVRFQQPRQYN4Z6QU
+- is_package: true
+  container:
+    type: HtmlTemplate
+    properties: {html: '@theme:dashboard.html'}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: content_panel
+    layout_properties: {slot: default}
+    components:
+    - type: RichText
+      properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
+        foreground: '', visible: true, font_size: null, content: Pick a date, font: '',
+        spacing_above: small, spacing_below: small, data: null, background: '', format: markdown}
+      name: rich_text_1
+      layout_properties: {grid_position: 'MBKHKT,VBSECS'}
+      event_bindings: {}
+    - type: DatePicker
+      properties: {}
+      name: date_picker_1
+      layout_properties: {grid_position: 'ZFNRRC,RIWIEA'}
+      event_bindings: {change: date_picker_1_change}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Confirm Date, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: ConfirmDateButton
+      layout_properties: {grid_position: 'SIDPVV,LDSWZI'}
+      event_bindings: {click: ConfirmDateButton_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: BackButton
+    layout_properties: {slot: sidebar}
+    event_bindings: {click: BackButton_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Logout, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: Logout
+    layout_properties: {slot: sidebar}
+    event_bindings: {click: Logout_click}
+  code: "from ._anvil_designer import DatePickerTemplate\nfrom anvil import *\nimport\
+    \ anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query\
+    \ as q\nfrom anvil.tables import app_tables\nfrom ... import globalVariables\n\
+    from datetime import datetime\n\nclass DatePicker(DatePickerTemplate):\n  def\
+    \ __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
+    \    self.init_components(**properties)\n    self.date_picker_1.format = \"%d-%m-%Y\"\
+    \n    \n\n    # Any code you write here will run when the form opens.\n    \n\n\
+    \  def date_picker_1_change(self, **event_args):\n    global pickedDate\n    \n\
+    \    dateString = self.date_picker_1.date\n    globalVariables.pickedDate = dateString\n\
+    \    #date = self.datepi.strftime(\"%H:%M:%S,\n    #globalVariables.pickedDate\
+    \ = self.date_picker_1.date\n    \n\n  def ConfirmDateButton_click(self, **event_args):\n\
+    \    if self.date_picker_1.date is None:\n      alert(\"You have to choose a date\"\
+    )\n    else:\n      open_form('TimeTables')\n\n  def BackButton_click(self, **event_args):\n\
+    \    open_form('MainForm')\n\n  def Logout_click(self, **event_args):\n    anvil.users.logout()\n\
+    \    open_form('LoginForm')\n\n\n\n\n"
+  class_name: MainForm.DatePicker
+  id: XWU5DE4TZV4AKWJ7PPLVNYTXAQ4RY2F5
+- is_package: true
+  container:
+    type: HtmlTemplate
+    properties: {html: '@theme:dashboard.html'}
+  components:
+  - type: ColumnPanel
+    properties: {}
+    name: content_panel
+    layout_properties: {slot: default}
+  code: "from ._anvil_designer import Test1Template\nfrom anvil import *\nimport anvil.server\n\
+    import anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query as\
+    \ q\nfrom anvil.tables import app_tables\n\nclass Test1(Test1Template):\n  def\
+    \ __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
+    \    self.init_components(**properties)\n\n    # Any code you write here will\
+    \ run when the form opens.\n    global liste\n    self.liste =[1,2,3]\n    user\
+    \ = anvil.users.get_user()\n    \n    \n    row = app_tables.users.get(email=anvil.users.get_user()['email'])\n\
+    \    ticketType = row['Ticket']['type']\n    ticketPrice = row['Ticket']['price']\n\
+    \    \n    \n\n    \n    \n    \n    \n    user.update(Ticket= {'type': 'Adult\
+    \ Ticket','price': 160})\n    self.get_person_for_number('555-555-5555')\n   \
+    \ print(ticketType)\n    print(ticketPrice)\n    #app_tables.users.get(Ticket=\
+    \ )\n  \n    \n    \n    \n  def getListe(self):\n    print(self.liste)\n    return\
+    \ self.liste\n  \n  \n  \n  \n    \n  '''    # Any code you write here will run\
+    \ when the form opens.\n    \n    app_tables.people.add_row(\n    name = \"Kermit\
+    \ the Frog\",\n    contact_details = {\n             'phone': [\n            \
+    \    {'type': 'work',\n                         'number': '555-555-5555'},\n \
+    \               {'type': 'home',\n                         'number': '555-123-4567'}\n\
+    \               ]\n                       })'''\n    \n  def get_person_for_number(self,phone_number):\n\
+    \    # We have a phone call for this number. Who is it?\n    return print(app_tables.people.get(\n\
+    \  contact_details = {'phone': [{'number': phone_number}]}\n    \t)['name'])\n\
+    \    \n  \n  "
+  class_name: Test1
+  id: 2JGGTHMKPPRPO2IPUTJQO7GM5DVLNBIP
+- is_package: true
+  container:
+    type: HtmlTemplate
+    properties: {html: '@theme:dashboard.html'}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: content_panel
+    layout_properties: {slot: default}
+    components:
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 'Which ticket do you want to buy?', font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_1
+      layout_properties: {grid_position: 'QUCEYN,RLYNCZ'}
+    - type: Spacer
+      properties: {height: 55}
+      name: spacer_1
+      layout_properties: {grid_position: 'AOJMIJ,TVBALD'}
+      event_bindings: {}
+    - type: ColumnPanel
+      properties: {col_widths: '{}'}
+      name: column_panel_1
+      layout_properties: {grid_position: 'MVAIKV,PKLJNW'}
+      components:
+      - type: Button
+        properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+          foreground: '', visible: true, text: Adult Ticket, font_size: null, font: '',
+          spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+          background: '', bold: false, underline: false, icon: ''}
+        name: AdultTicketButton
+        layout_properties: {grid_position: 'KWBCBL,KCEPKE'}
+        event_bindings: {click: AdultTicketButton_click}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Childrens Ticket, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: ChildrensTicketButton
+      layout_properties: {grid_position: 'WECZOS,CQXKQE'}
+      event_bindings: {click: ChildrensTicketButton_click}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Senior Ticket, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: SeniorTicketButton
+      layout_properties: {grid_position: 'CFPCCG,AHTVSK'}
+      event_bindings: {click: SeniorTicketButton_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Back to date, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: backButton
+    layout_properties: {slot: sidebar}
+    event_bindings: {click: backButton_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Logout, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: LogoutButton
+    layout_properties: {slot: sidebar}
+    event_bindings: {click: LogoutButton_click}
+  code: "from ._anvil_designer import BuyTicketFormTemplate\nfrom anvil import *\n\
+    import anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport\
+    \ anvil.tables.query as q\nfrom anvil.tables import app_tables\nfrom .. import\
+    \ globalVariables\n\n\nclass BuyTicketForm(BuyTicketFormTemplate):\n  def __init__(self,\
+    \ **properties):\n    global ticketInfoList\n    # Set Form properties and Data\
+    \ Bindings.\n    self.init_components(**properties)\n\n    # Any code you write\
+    \ here will run when the form opens.\n    print(globalVariables.ticketInfoList)\n\
+    \    \n    \n\n  def AdultTicketButton_click(self, **event_args):\n    global\
+    \ ticketInfoList\n    global pickedDate\n    userName = anvil.users.get_user()['Name']\
+    \ \n    anvil.server.call('buyAdultTicket',globalVariables.ticketInfoList[0],globalVariables.ticketInfoList[1],globalVariables.ticketInfoList[2])\n\
+    \    anvil.server.call('removeUpgradedTicket')\n    alert(f\"You have bought an\
+    \ Adult Ticket to {globalVariables.ticketInfoList[0]} from {globalVariables.ticketInfoList[1]}\\\
+    nThe train will depart at {globalVariables.ticketInfoList[2]}\")\n    globalVariables.pickedDate\
+    \ = None\n    open_form('MainForm')\n\n  def ChildrensTicketButton_click(self,\
+    \ **event_args):\n    global ticketInfoList\n    userName = anvil.users.get_user()['Name']\
+    \ \n    anvil.server.call('buyChildrensTicket',globalVariables.ticketInfoList[0],globalVariables.ticketInfoList[1],globalVariables.ticketInfoList[2])\n\
+    \    anvil.server.call('removeUpgradedTicket')\n    alert(f\"You have bought a\
+    \ Childrens Ticket to {globalVariables.ticketInfoList[0]} fra {globalVariables.ticketInfoList[1]}\\\
+    nThe train will depart at {globalVariables.ticketInfoList[2]}\")\n    globalVariables.pickedDate\
+    \ = None\n    open_form('MainForm')\n    \n  def SeniorTicketButton_click(self,\
+    \ **event_args):\n    global ticketInfoList\n    userName = anvil.users.get_user()['Name']\
+    \ \n    anvil.server.call('buySeniorTicket',globalVariables.ticketInfoList[0],globalVariables.ticketInfoList[1],globalVariables.ticketInfoList[2])\n\
+    \    anvil.server.call('removeUpgradedTicket')\n    alert(f\"You have bought a\
+    \ Senior Ticket to {globalVariables.ticketInfoList[0]} from {globalVariables.ticketInfoList[1]}\\\
+    nThe train will depart at {globalVariables.ticketInfoList[2]}\")\n    globalVariables.pickedDate\
+    \ = None\n    open_form('MainForm')\n\n  def backButton_click(self, **event_args):\n\
+    \    open_form('MainForm.DatePicker')\n\n  def LogoutButton_click(self, **event_args):\n\
+    \    anvil.users.logout()\n    open_form('LoginForm')\n\n\n\n\n"
+  class_name: BuyTicketForm
+  id: B245BXMNUJNYWJE3LC2WBDDD2D2LMY4O
+startup: {type: form, module: LoginForm}
+package_name: Ticket_Booking
+allow_embedding: false
+name: Ticket Booking
+runtime_options: {version: 2, client_version: '3', server_version: python3-full}
+metadata: {}
+native_deps: {head_html: ''}
+db_schema:
+  users:
+    title: Users
+    client: full
+    server: full
+    columns:
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {width: 100}
+      type: bool
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: Name
+      admin_ui: {width: 200}
+      type: string
+    - name: signed_up
+      admin_ui: {width: 200}
+      type: datetime
+    - name: Ticket
+      admin_ui: {width: 835}
+      type: simpleObject
+    - name: IsUpgraded
+      admin_ui: {width: 200}
+      type: bool
+  traintimes:
+    title: TrainTimes
+    client: search
+    server: full
+    columns:
+    - name: From
+      admin_ui: {width: 200}
+      type: string
+    - name: To
+      admin_ui: {width: 200}
+      type: string
+    - name: Time
+      admin_ui: {width: 200}
+      type: string
+dependency_order: []
+dependency_code: {}
+theme:
+  templates:
+  - name: Card-based layout with sidebar
+    description: A page with a card-based layout, and a sidebar menu for links
+    img: img/form-templates/dashboard.png
+    form:
+      class_name: Form
+      is_package: true
+      container:
+        type: HtmlTemplate
+        properties: {html: '@theme:dashboard.html'}
+      components:
+      - type: ColumnPanel
+        properties: {}
+        name: content_panel
+        layout_properties: {slot: default}
+      code: "from ._anvil_designer import $NAME$Template\nfrom anvil import *\n\n\
+        class $NAME$($NAME$Template):\n\n  def __init__(self, **properties):\n   \
+        \ # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
+        \n    # Any code you write here will run when the form opens.\n    \n"
+  - name: Single-column layout
+    description: A page with a single-column layout and a large header
+    img: img/form-templates/material-single-column.png
+    form:
+      class_name: Form
+      is_package: true
+      container:
+        type: HtmlTemplate
+        properties: {html: '@theme:single-column.html'}
+      components:
+      - type: ColumnPanel
+        properties: {}
+        name: content_panel
+        layout_properties: {slot: default}
+      code: "from ._anvil_designer import $NAME$Template\nfrom anvil import *\n\n\
+        class $NAME$($NAME$Template):\n\n  def __init__(self, **properties):\n   \
+        \ # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
+        \n    # Any code you write here will run when the form opens.\n"
+  parameters:
+    roles:
+    - name: title
+      components: [Label]
+    - name: card
+      components: [ColumnPanel]
+      display_in_toolbox: true
+      title: Card
+  assets:
+  - {name: dashboard.html, content: PCEtLTxsaW5rIGhyZWY9Il8vdGhlbWUvZGFzaGJvYXJkLmNzcyIgcmVsPSJzdHlsZXNoZWV0Ij4tLT4KPHN0eWxlPgouc2lkZWJhciB7CiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzMzOwogICAgY29sb3I6IHdoaXRlOwogICAgcGFkZGluZzogMTBweCAwOwogICAgZmxleC1zaHJpbms6IDA7CgogICAgb3ZlcmZsb3cteTogYXV0bzsKICAgIG92ZXJmbG93LXg6IGhpZGRlbjsKfQoKLnNpZGViYXIgLnBsYWNlaG9sZGVyIHsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKfQoKLnNpZGViYXItZWx0OjpmaXJzdCB7CiAgICBib3JkZXItdG9wOiAxcHggc29saWQgIzg4ODsKfQoKLnNpZGViYXItZWx0IHsKICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsKICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjODg4Owp9Cgouc2lkZWJhci1lbHQgLmRyb3AtaGVyZSB7CiAgICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgICB0b3A6IC04cHg7CiAgICBsZWZ0OiAwOwogICAgcmlnaHQ6IDA7CiAgICBoZWlnaHQ6IDVweDsKfQoKLnNpZGViYXItZWx0Pi5jb250ZW50IGEgewpmb250LXNpemU6IDE2cHg7CmNvbG9yOndoaXRlOwp0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwp9Cgouc2lkZWJhci1lbHQ+LmNvbnRlbnQgYTpob3ZlciB7CmJhY2tncm91bmQ6ICM0NDQ7Cn0KCi5zaWRlYmFyLWVsdCAuY29udGVudCBhLmFudmlsLWNvbXBvbmVudCB7CiAgICBwYWRkaW5nLWxlZnQ6IDE0cHg7CiAgICBwYWRkaW5nLXJpZ2h0OiAxNHB4Owp9Cgouc2lkZWJhci1lbHQgYSB7CiAgICBjb2xvcjogI2RkZDsKfQoKLnNpZGViYXItZWx0IGE6aG92ZXIsIC5zaWRlYmFyLWVsdCBhOmFjdGl2ZSB7CiAgICBjb2xvcjogd2hpdGU7Cn0KCi8qIFJlc3BvbnNpdmUgYml0czogTWFrZSB0aGUgbWVudSBvdmVybGF5IHRoZSBzY3JlZW4KICAgKGFuZCBoaWRkZW4gYnkgZGVmYXVsdCkgcmF0aGVyIHRoYW4gZGlzcGxhY2luZyBpdAogICBvbiBzbWFsbCBzY3JlZW5zCiovCgouc2lkZWJhci5mbG9hdGluZyB7CiAgICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgICB0b3A6IDYycHg7CiAgICBib3R0b206IDBweDsKICAgIGxlZnQ6IDBweDsKICAgIHotaW5kZXg6IDI7Cn0KCkBtZWRpYShtYXgtd2lkdGg6NzY3cHgpIHsKICAgIC5ydW5uZXIgLnNpZGViYXIgewogICAgICAgIGRpc3BsYXk6IG5vbmU7CiAgICAgICAgcG9zaXRpb246IGFic29sdXRlOwogICAgICAgIHRvcDogNjJweDsKICAgICAgICBib3R0b206IDBweDsKICAgICAgICBsZWZ0OiAwcHg7CiAgICAgICAgei1pbmRleDogMTI7CiAgICB9CgogICAgLnJ1bm5lciAuc2lkZWJhci1jbGljay1ndWFyZCB7CiAgICAgICAgZGlzcGxheTogbm9uZTsKICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgICAgICAgdG9wOiA2MnB4OwogICAgICAgIGJvdHRvbTogMHB4OwogICAgICAgIGxlZnQ6IDA7CiAgICAgICAgcmlnaHQ6IDA7CiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzg4ODsKICAgICAgICBvcGFjaXR5OiAwLjU7CiAgICAgICAgei1pbmRleDogMTA7CiAgICB9CgogICAgLmRlc2lnbmVyIC5zaWRlYmFyIHsKICAgICAgICBtYXgtd2lkdGg6IDMwJTsKICAgIH0KCiAgICAuc2lkZWJhci5mbG9hdGluZyB7CiAgICAgICAgdG9wOiA2MnB4OwogICAgICAgIHotaW5kZXg6IDEyOwogICAgfQoKfQoKLnN0cnVjdHVyZSB7CiAgICBwb3NpdGlvbjogcmVsYXRpdmU7CiAgICB3aWR0aDogMTAwJTsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uOwogICAgYWxpZ24taXRlbXM6IHN0cmV0Y2g7CiAgICBtaW4taGVpZ2h0OiAxMDB2aDsKfQoKLmJvZHkgewogICAgZmxleC1ncm93OiAxOwogIAogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7CiAgICBhbGlnbi1pdGVtczogc3RyZXRjaDsKfQogIAoubmF2IHsKICAgIGZsZXg6IDAgMDsKICAgIGZsZXgtYmFzaXM6IGF1dG87CiAgICBmbGV4LWJhc2lzOiBjb250ZW50OwogIAogICAgei1pbmRleDogMTA7CgogICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7CiAgICBwYWRkaW5nOiA4cHggMTZweCA3cHg7IC8qIGV4cGVjdCA1cHggbWFyZ2luICovCiAgICBtaW4taGVpZ2h0OiA2MnB4OwogICAgZm9udC1zaXplOiAxNnB4OwogICAgY29sb3I6ICMwMDk2ODg7IC8qIE1hdGVyaWFsIERlc2lnbjogIlRlYWwgNTAwIiAqLwp9CgoubmF2IC50aXRsZSwgLm5hdiAubWVudS1idG4gewogICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgdmVydGljYWwtYWxpZ246IHRvcDsKICAgIG1hcmdpbi1sZWZ0OiA3cHg7Cn0KLm5hdiAubWVudS1idG4sIC5uYXYgLnRpdGxlLnBsYWNlaG9sZGVyIHsKICAgIG1hcmdpbi10b3A6IDVweDsKICAgIG1hcmdpbi1sZWZ0OiAwOwp9CgoubmF2ID4gLm1lbnUtYnRuIHsKICAgIGNvbG9yOiAjMzMzOwogICAgY3Vyc29yOiBwb2ludGVyOwogICAgd2lkdGg6IDMycHg7CiAgICBoZWlnaHQ6IDMycHg7CiAgICBib3JkZXItcmFkaXVzOiAxNnB4OwogICAgcGFkZGluZzogNXB4OwogICAgbWFyZ2luLXRvcDogN3B4OwogICAgdGV4dC1hbGlnbjogY2VudGVyOwp9CgoubmF2ID4gLm1lbnUtYnRuOmhvdmVyIHsKICAgIGJhY2tncm91bmQtY29sb3I6ICNjY2M7Cn0KCi5uYXYtcmlnaHQgewogICAgZmxvYXQ6IHJpZ2h0OwogICAgY29sb3I6ICMzMzM7Cn0KCi5uYXYtZWx0IHsKICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsKICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7CiAgICBtYXJnaW4tbGVmdDogMTBweDsKICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsKfQoKLm5hdi1lbHQucGxhY2Vob2xkZXIgewogICAgbWFyZ2luLXRvcDogNXB4OwogICAgb3BhY2l0eTogMC44OwogICAgY29sb3I6ICM4ODg7CiAgICB2aXNpYmlsaXR5OiBoaWRkZW47Cn0KCmJvZHkuYW52aWwtaGlnaGxpZ2h0IC5uYXYtZWx0LnBsYWNlaG9sZGVyIHsKICAgIHZpc2liaWxpdHk6IHZpc2libGU7Cn0KCi5uYXYtZWx0IC5kcm9wLWhlcmUgewogICAgcG9zaXRpb246IGFic29sdXRlOwogICAgdG9wOiAwOwogICAgbGVmdDogLTcuNXB4OwogICAgYm90dG9tOiAwOwogICAgd2lkdGg6IDVweDsKfQoKCi5jYXJkcyB7CiAgICBmbGV4LWdyb3c6IDE7CgogICAgZm9udC13ZWlnaHQ6IGJvbGQ7CiAgICBjb2xvcjogIzU1NTsKICAgIGZvbnQtc2l6ZTogMjRweDsKCiAgICBwYWRkaW5nOiAyNHB4IDE2cHg7CiAgICBtYXgtd2lkdGg6IDEwMCU7Cn0KCgouZGVzaWduZXIgLmFudmlsLWhpZ2hsaWdodCAuY2FyZHMgLmFudmlsLWNvbnRhaW5lciAuYW52aWwtY29udGFpbmVyIC5hbnZpbC1jb250YWluZXIgewogICAgb3V0bGluZTogMXB4IGRhc2hlZCByZ2JhKDAsMCwwLDAuMykKfQoKCjwvc3R5bGU+CiAgICAgIAo8c2NyaXB0PgpmdW5jdGlvbiB0b2dnbGVTaWRlYmFyKCkgewogICAgdmFyIHMgPSAkKCcuc2lkZWJhcicpOwogICAgaWYgKCFzLmlzKCc6aGlkZGVuJykpIHsKICAgICAgICAkKCcuc2lkZWJhci1jbGljay1ndWFyZCcpLmhpZGUoKTsKICAgICAgICBzLmFkZENsYXNzKCdmbG9hdGluZycpLmFuaW1hdGUoe2xlZnQ6IC1zLndpZHRoKCl9LCB7Y29tcGxldGU6IGZ1bmN0aW9uKCkgeyBzLmhpZGUoKTsgfX0pOwogICAgfSBlbHNlIHsKICAgICAgICAkKCcuc2lkZWJhci1jbGljay1ndWFyZCcpLnNob3coKTsKICAgICAgICBzLnNob3coKS5hZGRDbGFzcygnZmxvYXRpbmcnKS5jc3MoJ2xlZnQnLCAnLTEwMCUnKS5jc3MoJ2xlZnQnLCAtcy53aWR0aCgpKQogICAgICAgICAgICAuYW5pbWF0ZSh7bGVmdDogMH0sIHtjb21wbGV0ZTogZnVuY3Rpb24oKSB7IHMucmVtb3ZlQ2xhc3MoJ2Zsb2F0aW5nJyk7IH19KTsKICAgIH0KfQoKJChmdW5jdGlvbigpIHsKICAgICQoJy5zaWRlYmFyJykub24oImNsaWNrIiwgZnVuY3Rpb24oKSB7CiAgICAgICAgaWYgKHdpbmRvdy5pbm5lcldpZHRoIDw9IDc2NykgewogICAgICAgICAgICB0b2dnbGVTaWRlYmFyKCk7CiAgICAgICAgfQogICAgfSk7CiAgICAkKCcuc2lkZWJhci1jbGljay1ndWFyZCcpLm9uKCJjbGljayIsIHRvZ2dsZVNpZGViYXIpOwp9KQo8L3NjcmlwdD4KCjwhLS0gUHV0IGJvZHkgYmVmb3JlIG5hdiBzbyB0aGF0IGl0IHNpdHMgdW5kZXJuZWF0aCAtLT4KCjxkaXYgY2xhc3M9InN0cnVjdHVyZSI+CgogIDxkaXYgY2xhc3M9Im5hdiIgYW52aWwtZHJvcC1yZWRpcmVjdD0iLnRpdGxlLnBsYWNlaG9sZGVyLCAubmF2LWVsdC5wbGFjZWhvbGRlciwgLm5hdi1lbHQgLmRyb3AtaGVyZSI+CgogICAgPGRpdiBjbGFzcz0ibWVudS1idG4iIG9uY2xpY2s9InRvZ2dsZVNpZGViYXIoKTsiPgogICAgICA8aSBjbGFzcz0iZmEgZmEtYmFycyI+PC9pPgogICAgPC9kaXY+CgogICAgPGRpdiBhbnZpbC1pZi1zbG90LWVtcHR5PSJ0aXRsZSIgYW52aWwtZHJvcC1zbG90PSJ0aXRsZSIgY2xhc3M9InRpdGxlIHBsYWNlaG9sZGVyIGFudmlsLWRlc2lnbmVyLW9ubHkiPgogICAgICBEcm9wIGEgdGl0bGUgaGVyZQogICAgPC9kaXY+CiAgICA8ZGl2IGFudmlsLXNsb3Q9InRpdGxlIiBjbGFzcz0idGl0bGUiPjwvZGl2PgoKICAgIDxkaXYgY2xhc3M9Im5hdi1yaWdodCIgYW52aWwtZHJvcC1yZWRpcmVjdD0iLm5hdi1lbHQiPgogICAgICA8ZGl2IGFudmlsLXNsb3QtcmVwZWF0PSJuYXYtcmlnaHQiIGNsYXNzPSJuYXYtZWx0Ij4KICAgICAgICA8ZGl2IGFudmlsLWRyb3AtaGVyZSBjbGFzcz0iZHJvcC1oZXJlIj48L2Rpdj4KICAgICAgPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9Im5hdi1lbHQgcGxhY2Vob2xkZXIgYW52aWwtZGVzaWduZXItb25seSIgYW52aWwtZHJvcC1zbG90PSJuYXYtcmlnaHQiPgogICAgICAgIDxpIGNsYXNzPSJnbHlwaGljb24gZ2x5cGhpY29uLXBsdXMiPjwvaT4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KCjwvZGl2PgogIAo8ZGl2IGNsYXNzPSJib2R5IiBhbnZpbC1kcm9wLWRlZmF1bHQgYW52aWwtZHJvcC1jb250YWluZXI9Ij4uY2FyZHMgLmFudmlsLWNvbnRhaW5lciIgYW52aWwtZHJvcC1yZWRpcmVjdD0iPi5jYXJkcyA+IC5wbGFjZWhvbGRlciI+CiAgICA8ZGl2IGNsYXNzPSJzaWRlYmFyIiBhbnZpbC1kcm9wLXJlZGlyZWN0PSI+LmRyb3AtaGVyZSI+CiAgICAgICAgPGRpdiBhbnZpbC1zbG90LXJlcGVhdD0ic2lkZWJhciIgY2xhc3M9InNpZGViYXItZWx0Ij4KICAgICAgICAgICAgPGRpdiBhbnZpbC1kcm9wLWhlcmUgY2xhc3M9ImRyb3AtaGVyZSI+PC9kaXY+CiAgICAgICAgICAgIDxkaXYgYW52aWwtc2xvdCBjbGFzcz0iY29udGVudCI+PC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ic2lkZWJhci1lbHQgYW52aWwtZGVzaWduZXItb25seSBkcm9wLWhlcmUiIGFudmlsLWRyb3Atc2xvdD0ic2lkZWJhciI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImNvbnRlbnQgcGxhY2Vob2xkZXIiPjxpIGNsYXNzPSJnbHlwaGljb24gZ2x5cGhpY29uLXBsdXMiPjwvaT48L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICAgPGRpdiBjbGFzcz0ic2lkZWJhci1jbGljay1ndWFyZCI+PC9kaXY+CgogICAgPGRpdiBjbGFzcz0iY2FyZHMgYW52aWwtbWVhc3VyZS1jb250ZW50Ij4KICAgICAgICA8ZGl2IGFudmlsLWlmLXNsb3QtZW1wdHk9ImRlZmF1bHQiCiAgICAgICAgICAgICBhbnZpbC1kcm9wLXNsb3Q9ImRlZmF1bHQiCiAgICAgICAgICAgICBjbGFzcz0icGxhY2Vob2xkZXIiPgogICAgICAgICAgICAgRHJvcCBhIENvbHVtblBhbmVsIGhlcmUgdG8gYWRkIGNvbnRlbnQKICAgICAgICA8L2Rpdj4KCiAgICAgICAgPGRpdiBhbnZpbC1zbG90PSJkZWZhdWx0Ij48L2Rpdj4KCiAgICAgICAgPGRpdiBjbGFzcz0iYW52aWwtZGVzaWduZXItb25seSBpbnN0cnVjdGlvbnMiPgogICAgICAgICAgICA8aSBjbGFzcz0iZmEgZmEtaW5mby1jaXJjbGUiPjwvaT4gQWRkCiAgICAgICAgICAgIDxpbWcgc3JjPSJodHRwczovL2FudmlsLndvcmtzL3RlbXBsYXRlLWFzc2V0cy9jb2x1bW4tcGFuZWwtaWNvbi5wbmciIHN0eWxlPSJoZWlnaHQ6IDMwcHg7IG1hcmdpbi1yaWdodDogLTdweDsgbWFyZ2luLXRvcDogLTVweCI+IENhcmQgY29tcG9uZW50cyB0byBjcmVhdGUgbmV3IGNhcmRzLgogICAgICAgIDwvZGl2PgogICAgPC9kaXY+CjwvZGl2PgoKPC9kaXY+Cg==,
+    id: D5A76TBQCUC5E5PF5NKHGFN4BCY5TRNG}
+  - {name: single-column.html, content: PHN0eWxlPgogIAogIGJvZHksIGh0bWwgewogICAgbWFyZ2luOiAwOwogICAgcGFkZGluZzogMDsKICAgIGZvbnQtZmFtaWx5OiAiSGVsdmV0aWNhIiwiQXJpYWwiLHNhbnMtc2VyaWY7CiAgfQogICAgCiAgaDEsaDIsaDMsaDQsaDUsaDYgewogICAgZm9udC1mYW1pbHk6ICJSb2JvdG8iLCJIZWx2ZXRpY2EiLCJBcmlhbCIsc2Fucy1zZXJpZjsKICB9CgogIGhlYWRlciB7CiAgICBmb250LWZhbWlseTogIlJvYm90byIsIkhlbHZldGljYSIsIkFyaWFsIixzYW5zLXNlcmlmOwogICAgcGFkZGluZzogMHB4IDQwcHg7CiAgICBtaW4taGVpZ2h0OiA2NHB4OwogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogbm93cmFwOwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsKICAgIGJhY2tncm91bmQ6ICNmNWY1ZjU7CiAgfQogIAogIGhlYWRlcj4udGl0bGUgewogICAgZm9udC1zaXplOiAyMHB4OwogIH0KICAKICBoZWFkZXI+Lm5hdi1saW5rcz5zcGFuIHsKICAgIG1hcmdpbjogMCAxMHB4OwogICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgdmVydGljYWwtYWxpZ246IHRvcDsKICB9CiAgCiAgLnJpYmJvbiB7CiAgICB3aWR0aDogMTAwJTsKICAgIGhlaWdodDogNDB2aDsKICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDk2ODg7IC8qIzNGNTFCNTsqLwogIH0KICAKICAKICBtYWluIHsKICAgIG1hcmdpbi10b3A6IC0zNXZoOwogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuOwogICAgbWluLWhlaWdodDogY2FsYyg5NXZoIC0gNjRweCk7CiAgfQoKICBib2R5LmFudmlsLXNob3ctYmFubmVyIG1haW4gewogICAgbWluLWhlaWdodDogY2FsYyg5NXZoIC0gNjRweCAtIDUwcHgpOwogIH0KICAKICBtYWluPi5jYXJkcyB7CiAgICB3aWR0aDogY2FsYyg2NyUgLSAxNnB4KTsKICAgIG1heC13aWR0aDogOTYwcHg7CiAgfQogIAogIEBtZWRpYSAobWF4LXdpZHRoOiA4MzlweCkgewogICAgbWFpbj4uY2FyZHMgewogICAgICB3aWR0aDogY2FsYygxMDAlIC0gMTZweCk7CiAgICB9CiAgfQogIAogIG1haW4+Zm9vdGVyIHsKICAgIHdpZHRoOjEwMCU7CiAgICBiYWNrZ3JvdW5kOiAjNDI0MjQyOwogICAgcGFkZGluZzogMzJweCA0MHB4OwogICAgY29sb3I6ICM5ZTllOWU7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsKICB9CiAgCiAgbWFpbj5mb290ZXIgYSB7CiAgICBjb2xvcjogIzllOWU5ZTsKICB9CiAgCiAgbWFpbj5mb290ZXI+ZGl2PnNwYW4gewogICAgbWFyZ2luOiAwcHggMTBweDsKICB9CiAgCiAgbWFpbj5mb290ZXI+LmZvb3Rlci1saW5rcz5zcGFuIHsKICAgIG1hcmdpbjogMCAxMHB4OwogICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgdmVydGljYWwtYWxpZ246IHRvcDsKICB9CiAKICAvKiBHbG9iYWwgb3ZlcnJpZGVzICovCiAgCiAgLmFudmlsLWJzLWNvbnRhaW5lciB7CiAgICBwYWRkaW5nOiAwOwogIH0KICAKICAvKiBEZXNpZ25lciBmaXh1cHMgKi8KICAuZGVzaWduZXIgLnJpYmJvbiB7CiAgICBoZWlnaHQ6IDMwMHB4OwogIH0KICAuZGVzaWduZXIgbWFpbiB7CiAgICBtYXJnaW4tdG9wOiAtMjAwcHg7CiAgICBtaW4taGVpZ2h0OiA1MDBweDsKICB9CiAgCiAgLyogRGVzaWduZXItc3BlY2lmaWMgc3R5bGVzICovCiAgLmxpbmstZHJvcC16b25lIHsKICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICAgIGxlZnQ6IC0xMHB4OwogICAgd2lkdGg6IDVweDsKICAgIGhlaWdodDogNDBweDsKICB9CiAgLm5ldy1saW5rIHsKICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsKICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7CiAgICBwYWRkaW5nOiAxMHB4OwogICAgbWFyZ2luLWxlZnQ6IDAgIWltcG9ydGFudDsKICAgIGJvcmRlcjogMXB4IGRvdHRlZCAjYmJiOwogIH0KICBbYW52aWwtaWYtc2xvdC1lbXB0eT10aXRsZV0gewogICAgYm9yZGVyOiAxcHggZG90dGVkICNiYmI7CiAgICBjb2xvcjogIzg4ODsKICAgIHBhZGRpbmc6IDVweDsKICB9CiAgLmRlc2lnbmVyIC5pbnN0cnVjdGlvbnMgewogICAgYmFja2dyb3VuZDogd2hpdGU7CiAgICBtYXJnaW46IDVweDsKICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsKICAgIHBhZGRpbmc6IDEwcHggMTBweDsKICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7CiAgfQogIAo8L3N0eWxlPgoKCjxkaXYgYW52aWwtZHJvcC1kZWZhdWx0IGFudmlsLWRyb3AtY29udGFpbmVyPSI+LmNhcmRzIC5hbnZpbC1jb250YWluZXIiIGFudmlsLWRyb3AtcmVkaXJlY3Q9Ij4uY2FyZHMgPiAucGxhY2Vob2xkZXIiPgogIDxoZWFkZXIgYW52aWwtZHJvcC1yZWRpcmVjdD0iPi5uYXYtbGlua3MgW2FudmlsLWRyb3Atc2xvdF0sPi5uYXYtbGlua3M+c3Bhbj5kaXYubGluay1kcm9wLXpvbmUsPi50aXRsZT5bYW52aWwtZHJvcC1oZXJlXSI+CiAgICA8ZGl2IGNsYXNzPSJ0aXRsZSIgYW52aWwtc2xvdD0idGl0bGUiPgogICAgICA8ZGl2IGNsYXNzPSJhbnZpbC1kZXNpZ25lci1vbmx5IiBhbnZpbC1pZi1zbG90LWVtcHR5PSJ0aXRsZSIgYW52aWwtZHJvcC1oZXJlPkRyb3AgdGl0bGUgaGVyZTwvZGl2PgogICAgPC9kaXY+CiAgICAKICAgIDxkaXYgY2xhc3M9Im5hdi1saW5rcyIgYW52aWwtZHJvcC1yZWRpcmVjdD0iPnNwYW4+LmxpbmstZHJvcC16b25lLD4uYW52aWwtZGVzaWduZXItb25seSI+CiAgICAgIDxzcGFuIGFudmlsLXNsb3QtcmVwZWF0PSJuYXYtbGlua3MiPgogICAgICAgIDxkaXYgY2xhc3M9ImxpbmstZHJvcC16b25lIiBhbnZpbC1kcm9wLWhlcmU+PC9kaXY+CiAgICAgIDwvc3Bhbj4KICAgICAgPHNwYW4gY2xhc3M9ImFudmlsLWRlc2lnbmVyLW9ubHkgbmV3LWxpbmsiIGFudmlsLWRyb3Atc2xvdD0ibmF2LWxpbmtzIj48aSBjbGFzcz0iZ2x5cGhpY29uIGdseXBoaWNvbi1wbHVzIj48L2k+PC9zcGFuPgogICAgPC9kaXY+CiAgPC9oZWFkZXI+CiAgPGRpdiBjbGFzcz0icmliYm9uIj48L2Rpdj4KICA8bWFpbj4KICAgIDxkaXYgY2xhc3M9ImNhcmRzIj4KICAgICAgCiAgICAgICAgPGRpdiBhbnZpbC1pZi1zbG90LWVtcHR5PSJkZWZhdWx0IgogICAgICAgICAgICAgYW52aWwtZHJvcC1zbG90PSJkZWZhdWx0IgogICAgICAgICAgICAgY2xhc3M9InBsYWNlaG9sZGVyIj4KICAgICAgICAgICAgIERyb3AgYSBDb2x1bW5QYW5lbCBoZXJlIHRvIGFkZCBjb250ZW50CiAgICAgICAgPC9kaXY+CgogICAgICAgIDxkaXYgYW52aWwtc2xvdD0iZGVmYXVsdCI+PC9kaXY+CgogICAgICAgIDxkaXYgY2xhc3M9InRleHQtY2VudGVyIj4KICAgICAgICAgIDxkaXYgY2xhc3M9ImFudmlsLWRlc2lnbmVyLW9ubHkgaW5zdHJ1Y3Rpb25zIj4KICAgICAgICAgICAgICA8aSBjbGFzcz0iZmEgZmEtaW5mby1jaXJjbGUiPjwvaT4gQWRkCiAgICAgICAgICAgICAgPGltZyBzcmM9Imh0dHBzOi8vYW52aWwud29ya3MvdGVtcGxhdGUtYXNzZXRzL2NvbHVtbi1wYW5lbC1pY29uLnBuZyIgc3R5bGU9ImhlaWdodDogMzBweDsgbWFyZ2luLXJpZ2h0OiAtN3B4OyBtYXJnaW4tdG9wOiAtNXB4Ij4gQ2FyZCBjb21wb25lbnRzIHRvIGNyZWF0ZSBuZXcgY2FyZHMuCiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgIDwvZGl2PgogICAgPGZvb3RlciBhbnZpbC1kcm9wLXJlZGlyZWN0PSI+LmZvb3Rlci1saW5rcyBbYW52aWwtZHJvcC1zbG90XSw+LmZvb3Rlci1saW5rcz5zcGFuPi5saW5rLWRyb3Atem9uZSI+CiAgICAgIDxkaXYgY2xhc3M9ImZvb3Rlci1saW5rcyIgYW52aWwtZHJvcC1yZWRpcmVjdD0iPnNwYW4+LmxpbmstZHJvcC16b25lLD4uYW52aWwtZGVzaWduZXItb25seSI+CiAgICAgICAgPHNwYW4gYW52aWwtc2xvdC1yZXBlYXQ9ImZvb3Rlci1saW5rcy1sZWZ0Ij4KICAgICAgICAgIDxkaXYgY2xhc3M9ImxpbmstZHJvcC16b25lIiBhbnZpbC1kcm9wLWhlcmU+PC9kaXY+CiAgICAgICAgPC9zcGFuPgogICAgICAgIDxzcGFuIGNsYXNzPSJhbnZpbC1kZXNpZ25lci1vbmx5IG5ldy1saW5rIiBhbnZpbC1kcm9wLXNsb3Q9ImZvb3Rlci1saW5rcy1sZWZ0Ij48aSBjbGFzcz0iZ2x5cGhpY29uIGdseXBoaWNvbi1wbHVzIj48L2k+PC9zcGFuPgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iZm9vdGVyLWxpbmtzIiBhbnZpbC1kcm9wLXJlZGlyZWN0PSI+c3Bhbj4ubGluay1kcm9wLXpvbmUsPi5hbnZpbC1kZXNpZ25lci1vbmx5Ij4KICAgICAgICA8c3BhbiBhbnZpbC1zbG90LXJlcGVhdD0iZm9vdGVyLWxpbmtzLXJpZ2h0Ij4KICAgICAgICAgIDxkaXYgY2xhc3M9ImxpbmstZHJvcC16b25lIiBhbnZpbC1kcm9wLWhlcmU+PC9kaXY+CiAgICAgICAgPC9zcGFuPgogICAgICAgIDxzcGFuIGNsYXNzPSJhbnZpbC1kZXNpZ25lci1vbmx5IG5ldy1saW5rIiBhbnZpbC1kcm9wLXNsb3Q9ImZvb3Rlci1saW5rcy1yaWdodCI+PGkgY2xhc3M9ImdseXBoaWNvbiBnbHlwaGljb24tcGx1cyI+PC9pPjwvc3Bhbj4KICAgICAgPC9kaXY+CiAgICA8L2Zvb3Rlcj4KICA8L21haW4+CjwvZGl2Pgo=,
+    id: XY2HDGKFHKWUI4KOCY2LNFGSM7BI2MS3}
+  - {name: theme.css, content: Ym9keSAqIHsKICBib3gtc2l6aW5nOiBib3JkZXItYm94Owp9Cgpib2R5IHsKICBmb250LWZhbWlseTogIlJvYm90byI7CiAgbWFyZ2luOiAwOwogIG1pbi1oZWlnaHQ6IDEwMCU7Cn0KCmJvZHkuYW52aWwtc2hvdy1iYW5uZXIgI2FwcEdvZXNIZXJlIHsKICAgIG1hcmdpbi10b3A6IDUwcHg7CiAgICBwb3NpdGlvbjogcmVsYXRpdmU7Cn0KCi5ib2R5IHsKICBiYWNrZ3JvdW5kLWNvbG9yOiAjZDdkN2Q3Owp9CgphLCBhOnZpc2l0ZWQgewogIGNvbG9yOiAjMDA5Njg4Owp9CgphOmhvdmVyLCBhOmFjdGl2ZSwgYTpmb2N1cyB7CiAgY29sb3I6ICMwMDc5NkI7IC8qIE1hdGVyaWFsIGRlc2lnbjogVGVhbCA3MDAgKi8KfQoKLnBsYWNlaG9sZGVyIHsKICBwYWRkaW5nOiA1cHg7CiAgYm9yZGVyOiAycHggZGFzaGVkICM4ODg7Cn0KCi5uYXYgewogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICB0b3A6IDA7CiAgbGVmdDogMDsKICB3aWR0aDogMTAwJTsKCiAgb3ZlcmZsb3cteTogaGlkZGVuOwoKICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogIGZvbnQtd2VpZ2h0OiBib2xkOwoKICBib3gtc2hhZG93OiAwIDFweCAzcHggIzg4ODsKCgogIC13ZWJraXQtdG91Y2gtY2FsbG91dDogbm9uZTsKICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lOwogIC1raHRtbC11c2VyLXNlbGVjdDogbm9uZTsKICAtbW96LXVzZXItc2VsZWN0OiBub25lOwogIC1tcy11c2VyLXNlbGVjdDogbm9uZTsKICB1c2VyLXNlbGVjdDogbm9uZTsKfQoKLm5hdi1yaWdodCB7CiAgZmxvYXQ6IHJpZ2h0OwogIGNvbG9yOiAjMzMzOwp9CgoubmF2LWVsdCB7CiAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogIHZlcnRpY2FsLWFsaWduOiB0b3A7CiAgbWFyZ2luLWxlZnQ6IDEwcHg7CiAgcG9zaXRpb246IHJlbGF0aXZlOwp9CgoubmF2LWVsdC5wbGFjZWhvbGRlciB7CiAgbWFyZ2luLXRvcDogNXB4OwogIG9wYWNpdHk6IDAuODsKICBjb2xvcjogIzg4ODsKICB2aXNpYmlsaXR5OiBoaWRkZW47Cn0KCmJvZHkuYW52aWwtaGlnaGxpZ2h0IC5uYXYtZWx0LnBsYWNlaG9sZGVyIHsKICB2aXNpYmlsaXR5OiB2aXNpYmxlOwp9CgoubmF2LWVsdCAuZHJvcC1oZXJlIHsKICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgdG9wOiAwOwogIGxlZnQ6IC03LjVweDsKICBib3R0b206IDA7CiAgd2lkdGg6IDVweDsKfQoKLmFudmlsLXJvbGUtdGl0bGUgewogIGZvbnQtc2l6ZTogMTZweDsKICBmb250LXdlaWdodDogYm9sZDsKfQoKLmRlc2lnbmVyIC5pbnN0cnVjdGlvbnMgewogICAgcGFkZGluZzogMjRweCAxNnB4OwogICAgZm9udC1zaXplOiAxNHB4OwogICAgdGV4dC1hbGlnbjogY2VudGVyOwogICAgY29sb3I6ICM2NjY7Cn0KCi8qIEdpdmUgZW5vdWdoIHNwYWNlIGZvciBjYXJkIGRyb3Atc2hhZG93cyAqLwouY2FyZHMgPiBkaXYgPiAuY29sdW1uLXBhbmVsID4gLmFudmlsLXBhbmVsLXNlY3Rpb24gPiAuYW52aWwtcGFuZWwtc2VjdGlvbi1jb250YWluZXIgewogICAgcGFkZGluZzogMCA1cHg7Cn0KCi5jYXJkcyA+IC5hbnZpbC1jb250YWluZXIgewogICAgb3V0bGluZTogbm9uZSAhaW1wb3J0YW50Owp9CgouYW52aWwtcm9sZS1jYXJkLAouZGVzaWduZXIgLmFudmlsLWhpZ2hsaWdodCAuYW52aWwtcm9sZS1jYXJkIHsKICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlOwogICAgYm94LXNoYWRvdzogMXB4IDJweCA0cHggIzg4ODsKCiAgICBmb250LXdlaWdodDogbm9ybWFsOwogICAgZm9udC1zaXplOiAxNHB4OwoKICAgIG91dGxpbmU6IG5vbmU7CiAgICBwYWRkaW5nOiAxNXB4IDA7Cgp9CiAgCi5hbnZpbC1yb2xlLWNhcmQ+LmFudmlsLXBhbmVsLXNlY3Rpb24+LmFudmlsLXBhbmVsLXNlY3Rpb24tY29udGFpbmVyIHsKICAgIHBhZGRpbmc6IDAgMTVweDsKfQoKLyogUmVzcG9uc2l2ZSBiaXRzOiBNYWtlIHRoZSBtZW51IG92ZXJsYXkgdGhlIHNjcmVlbgogICAoYW5kIGhpZGRlbiBieSBkZWZhdWx0KSByYXRoZXIgdGhhbiBkaXNwbGFjaW5nIGl0CiAgIG9uIHNtYWxsIHNjcmVlbnMKKi8KCkBtZWRpYShtYXgtd2lkdGg6NzY3cHgpIHsKCiAgLmNhcmRzIHsKICAgIHBhZGRpbmc6IDI0cHggMHB4OwogIH0KCn0KCgovKiBGcm9tIGh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzP2ZhbWlseT1Sb2JvdG8gKi8KLyogY3lyaWxsaWMtZXh0ICovCkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnUm9ib3RvJzsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKICBzcmM6IGxvY2FsKCdSb2JvdG8nKSwgbG9jYWwoJ1JvYm90by1SZWd1bGFyJyksIHVybChodHRwczovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvcm9ib3RvL3YxNi9lazRnelotR2VYQVBjU2JIdENlUUlfZXNaVzJ4T1EteHNOcU80N201NURBLndvZmYyKSBmb3JtYXQoJ3dvZmYyJyk7CiAgdW5pY29kZS1yYW5nZTogVSswNDYwLTA1MkYsIFUrMjBCNCwgVSsyREUwLTJERkYsIFUrQTY0MC1BNjlGOwp9Ci8qIGN5cmlsbGljICovCkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnUm9ib3RvJzsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKICBzcmM6IGxvY2FsKCdSb2JvdG8nKSwgbG9jYWwoJ1JvYm90by1SZWd1bGFyJyksIHVybChodHRwczovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvcm9ib3RvL3YxNi9tRXJ2TEJZZ19jWEczckx2VXNLVF9mZXNaVzJ4T1EteHNOcU80N201NURBLndvZmYyKSBmb3JtYXQoJ3dvZmYyJyk7CiAgdW5pY29kZS1yYW5nZTogVSswNDAwLTA0NUYsIFUrMDQ5MC0wNDkxLCBVKzA0QjAtMDRCMSwgVSsyMTE2Owp9Ci8qIGdyZWVrLWV4dCAqLwpAZm9udC1mYWNlIHsKICBmb250LWZhbWlseTogJ1JvYm90byc7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA0MDA7CiAgc3JjOiBsb2NhbCgnUm9ib3RvJyksIGxvY2FsKCdSb2JvdG8tUmVndWxhcicpLCB1cmwoaHR0cHM6Ly9mb250cy5nc3RhdGljLmNvbS9zL3JvYm90by92MTYvLTJuMnAtX1kwOHNnNTdDTldRZktOdmVzWlcyeE9RLXhzTnFPNDdtNTVEQS53b2ZmMikgZm9ybWF0KCd3b2ZmMicpOwogIHVuaWNvZGUtcmFuZ2U6IFUrMUYwMC0xRkZGOwp9Ci8qIGdyZWVrICovCkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnUm9ib3RvJzsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKICBzcmM6IGxvY2FsKCdSb2JvdG8nKSwgbG9jYWwoJ1JvYm90by1SZWd1bGFyJyksIHVybChodHRwczovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvcm9ib3RvL3YxNi91MFRPcG0wODJNTmtTNUswUTRyaHF2ZXNaVzJ4T1EteHNOcU80N201NURBLndvZmYyKSBmb3JtYXQoJ3dvZmYyJyk7CiAgdW5pY29kZS1yYW5nZTogVSswMzcwLTAzRkY7Cn0KLyogdmlldG5hbWVzZSAqLwpAZm9udC1mYWNlIHsKICBmb250LWZhbWlseTogJ1JvYm90byc7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA0MDA7CiAgc3JjOiBsb2NhbCgnUm9ib3RvJyksIGxvY2FsKCdSb2JvdG8tUmVndWxhcicpLCB1cmwoaHR0cHM6Ly9mb250cy5nc3RhdGljLmNvbS9zL3JvYm90by92MTYvTmRGOU10bk9wTHpvLW5vTW9HMG1pUGVzWlcyeE9RLXhzTnFPNDdtNTVEQS53b2ZmMikgZm9ybWF0KCd3b2ZmMicpOwogIHVuaWNvZGUtcmFuZ2U6IFUrMDEwMi0wMTAzLCBVKzFFQTAtMUVGOSwgVSsyMEFCOwp9Ci8qIGxhdGluLWV4dCAqLwpAZm9udC1mYWNlIHsKICBmb250LWZhbWlseTogJ1JvYm90byc7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA0MDA7CiAgc3JjOiBsb2NhbCgnUm9ib3RvJyksIGxvY2FsKCdSb2JvdG8tUmVndWxhcicpLCB1cmwoaHR0cHM6Ly9mb250cy5nc3RhdGljLmNvbS9zL3JvYm90by92MTYvRmN4N1d3djhPelQ3MUEzRTFYT0FqdmVzWlcyeE9RLXhzTnFPNDdtNTVEQS53b2ZmMikgZm9ybWF0KCd3b2ZmMicpOwogIHVuaWNvZGUtcmFuZ2U6IFUrMDEwMC0wMjRGLCBVKzFFMDAtMUVGRiwgVSsyMEEwLTIwQUIsIFUrMjBBRC0yMENGLCBVKzJDNjAtMkM3RiwgVStBNzIwLUE3RkY7Cn0KLyogbGF0aW4gKi8KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdSb2JvdG8nOwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogNDAwOwogIHNyYzogbG9jYWwoJ1JvYm90bycpLCBsb2NhbCgnUm9ib3RvLVJlZ3VsYXInKSwgdXJsKGh0dHBzOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9yb2JvdG8vdjE2L0NXQjBYWUE4YnpvMGtTVGhYMFVUdUEud29mZjIpIGZvcm1hdCgnd29mZjInKTsKICB1bmljb2RlLXJhbmdlOiBVKzAwMDAtMDBGRiwgVSswMTMxLCBVKzAxNTItMDE1MywgVSswMkM2LCBVKzAyREEsIFUrMDJEQywgVSsyMDAwLTIwNkYsIFUrMjA3NCwgVSsyMEFDLCBVKzIyMTIsIFUrMjIxNTsKfQ==,
+    id: E5TZQZWEY74MEXO75NRB7CQYRHUUIMXK}
+server_modules:
+- {name: BuyTickets, code: "import anvil.users\nimport anvil.tables as tables\nimport\
+    \ anvil.tables.query as q\nfrom anvil.tables import app_tables\nimport anvil.server\n\
+    \n# This is a server module. It runs on the Anvil server,\n# rather than in the\
+    \ user's browser.\n#\n# To allow anvil.server.call() to call functions here, we\
+    \ mark\n# them with @anvil.server.callable.\n# Here is an example - you can replace\
+    \ it with your own:\n#\n#@anvil.server.callable\n\n\nfullPrice = 160\nreducedPrice\
+    \ = 80\n\n@anvil.server.callable\ndef buyAdultTicket(to, tFrom, time):\n  print(\"\
+    You have bought an Adult Ticket\")\n  user = anvil.users.get_user()\n  print(f\"\
+    To er {type(to)}, tFrom er {type(tFrom)}, time er {type(time)}\")\n  \n  user.update(Ticket=\
+    \ {'to': to, 'tFrom': tFrom, 'time': time, 'type': 'Adult Ticket','price': fullPrice})\n\
+    \  \n@anvil.server.callable\ndef buyChildrensTicket(to, tFrom, time):\n  print(\"\
+    You have bought a Childrens Ticket\")\n  user = anvil.users.get_user()\n  print(f\"\
+    To er {type(to)}, tFrom er {type(tFrom)}, time er {type(time)}\")\n  \n  user.update(Ticket=\
+    \ {'to': to, 'tFrom': tFrom, 'time': time, 'type': 'Childrens Ticket','price':\
+    \ reducedPrice})\n  \n  \n@anvil.server.callable\ndef buySeniorTicket(to, tFrom,\
+    \ time):\n  print(\"You have bought a Senior Ticket\")\n  user = anvil.users.get_user()\n\
+    \  print(f\"To er {type(to)}, tFrom er {type(tFrom)}, time er {type(time)}\")\n\
+    \  \n  user.update(Ticket= {'to': to, 'tFrom': tFrom, 'time': time, 'type': 'Senior\
+    \ Ticket','price': reducedPrice})\n  ", id: T7HQOU2Z2QXDU7ON6Z5KFFLEYG44Y355}
+- {name: CancelTicket, code: "import anvil.users\nimport anvil.tables as tables\n\
+    import anvil.tables.query as q\nfrom anvil.tables import app_tables\nimport anvil.server\n\
+    \n# This is a server module. It runs on the Anvil server,\n# rather than in the\
+    \ user's browser.\n#\n# To allow anvil.server.call() to call functions here, we\
+    \ mark\n# them with @anvil.server.callable.\n# Here is an example - you can replace\
+    \ it with your own:\n#\n# @anvil.server.callable\n# def say_hello(name):\n#  \
+    \ print(\"Hello, \" + name + \"!\")\n#   return 42\n#\n@anvil.server.callable\n\
+    def cancelTicket():\n  user = anvil.users.get_user()\n  anvil.server.call('removeUpgradedTicket')\n\
+    \  user['Ticket'] = None", id: XTN5UQSJLRTNGU3TRPQT5OMUUWR6UYWQ}
+- {name: TrainTable, code: "import anvil.users\nimport anvil.tables as tables\nimport\
+    \ anvil.tables.query as q\nfrom anvil.tables import app_tables\nimport anvil.server\n\
+    import pandas as pd\nimport anvil.media\n\n# This is a server module. It runs\
+    \ on the Anvil server,\n# rather than in the user's browser.\n#\n# To allow anvil.server.call()\
+    \ to call functions here, we mark\n# them with @anvil.server.callable.\n# Here\
+    \ is an example - you can replace it with your own:\n#\n# @anvil.server.callable\n\
+    # def say_hello(name):\n#   print(\"Hello, \" + name + \"!\")\n#   return 42\n\
+    #\n\n@anvil.server.callable\ndef store_data(file):\n  with anvil.media.TempFile(file)\
+    \ as file_name:\n    df = pd.read_csv(file_name)\n    '''if file.content_type\
+    \ == 'text/csv':\n      df = pd.read_csv(file_name)\n    else:\n      df = pd.read_excel(file_name)'''\n\
+    \    for d in df.to_dict(orient=\"records\"):\n      # d is now a dict of {columnname\
+    \ -> value} for this row\n      # We use Python's **kwargs syntax to pass the\
+    \ whole dict as\n      # keyword arguments\n      app_tables.traintimes.add_row(**d)\n\
+    \      \n@anvil.server.callable\ndef get_traintimes():\n  return app_tables.traintimes.search()\n\
+    \      \n      \n", id: JKHCET7NZ3PWS2DUPSDWRKML2DWV2TVP}
+- {name: UpgradeTicket, code: "import anvil.users\nimport anvil.tables as tables\n\
+    import anvil.tables.query as q\nfrom anvil.tables import app_tables\nimport anvil.server\n\
+    \n# This is a server module. It runs on the Anvil server,\n# rather than in the\
+    \ user's browser.\n#\n# To allow anvil.server.call() to call functions here, we\
+    \ mark\n# them with @anvil.server.callable.\n# Here is an example - you can replace\
+    \ it with your own:\n#\n# @anvil.server.callable\n# def say_hello(name):\n#  \
+    \ print(\"Hello, \" + name + \"!\")\n#   return 42\n#\n@anvil.server.callable\n\
+    def upgradeTicket():\n  print(\"You have upgraded your experience, enjoy!\")\n\
+    \  user = anvil.users.get_user()\n  user.update(IsUpgraded= True)\n\n@anvil.server.callable\n\
+    def removeUpgradedTicket():\n  print(\"Upgraded Ticket is removed\")\n  user =\
+    \ anvil.users.get_user()\n  user.update(IsUpgraded= False)", id: 6BCLADOFVMBRVKPYCGZLW34TXQHJ4DIP}
+renamed: true
