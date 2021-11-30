@@ -9,20 +9,11 @@ modules:
 
     from anvil.tables import app_tables
 
-    # This is a module.
+    ''''''
 
-    # You can define variables and functions here, and use them from any form. For
-    example, in a top-level form:
+    This module contains the global variables used in the application
 
-    #
-
-    #    from . import Module1
-
-    #
-
-    #    Module1.say_hello()
-
-    #
+    ''''''
 
 
     ticketInfoList = []
@@ -129,26 +120,6 @@ forms:
     )\n\n"
   class_name: Test2
   id: V2AWGRP3HZFVH2YEZ4BWWRPPTJ3VFCDX
-- container:
-    type: ColumnPanel
-    properties: {col_widths: '{}'}
-    event_bindings: {}
-  components:
-  - type: FileLoader
-    properties: {}
-    name: file_loader_1
-    layout_properties: {grid_position: 'LXEBUD,LFDWYN'}
-    event_bindings: {change: file_loader_1_change}
-  is_package: true
-  code: "from ._anvil_designer import AddTimeTable_NOTUSEDTemplate\nfrom anvil import\
-    \ *\nimport anvil.server\nimport anvil.users\nimport anvil.tables as tables\n\
-    import anvil.tables.query as q\nfrom anvil.tables import app_tables\n\n\n\n\n\
-    class AddTimeTable_NOTUSED(AddTimeTable_NOTUSEDTemplate):\n  def __init__(self,\
-    \ **properties):\n    # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
-    \n    # Any code you write here will run when the form opens.\n  \n\n  def file_loader_1_change(self,\
-    \ file, **event_args):\n    anvil.server.call('store_data',file)\n\n"
-  class_name: AddTimeTable_NOTUSED
-  id: EHI7ANSJY2WUSTQNM6E46U42DIOS2UWF
 - is_package: true
   container:
     type: HtmlTemplate
@@ -192,12 +163,13 @@ forms:
       event_bindings: {click: button_1_click}
   code: "from ._anvil_designer import UserNameFormTemplate\nfrom anvil import *\n\
     import anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport\
-    \ anvil.tables.query as q\nfrom anvil.tables import app_tables\n\nclass UserNameForm(UserNameFormTemplate):\n\
+    \ anvil.tables.query as q\nfrom anvil.tables import app_tables\n\n'''\nThis code\
+    \ defines the functionality of the Users full name page\n'''\n\nclass UserNameForm(UserNameFormTemplate):\n\
     \  def __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
-    \    self.init_components(**properties)\n\n    # Any code you write here will\
-    \ run when the form opens.\n    \n\n  def button_1_click(self, **event_args):\n\
-    \    \"\"\"This method is called when the button is clicked\"\"\"\n    user =\
-    \ user = anvil.users.get_user()\n    user.update(Name=self.text_area_1.text)\n\
+    \    self.init_components(**properties)\n\n    \n#Function receiving the user's\
+    \ name from input and saving it to the user in the database\n  def button_1_click(self,\
+    \ **event_args):\n    \"\"\"This method is called when the button is clicked\"\
+    \"\"\n    user = user = anvil.users.get_user()\n    user.update(Name=self.text_area_1.text)\n\
     \    open_form('MainForm')\n    \n\n"
   class_name: UserNameForm
   id: LFESCHQ7GIVYLPHR2GPPLGVXKGDWMS64
@@ -265,12 +237,14 @@ forms:
     event_bindings: {click: LogOut_click}
   code: "from ._anvil_designer import TimeTablesTemplate\nfrom anvil import *\nimport\
     \ anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query\
-    \ as q\nfrom anvil.tables import app_tables\n\nclass TimeTables(TimeTablesTemplate):\n\
-    \  def __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
-    \    self.init_components(**properties)\n    \n    self.repeating_panel_1.items\
-    \ = anvil.server.call('get_traintimes')\n\n  def BackButton_click(self, **event_args):\n\
-    \    open_form('MainForm.DatePicker')\n\n  def LogOut_click(self, **event_args):\n\
-    \    anvil.users.logout()\n    open_form('LoginForm')\n\n\n  "
+    \ as q\nfrom anvil.tables import app_tables\n\n'''\nThis code defines the functionality\
+    \ of the Time Table page\n'''\n\nclass TimeTables(TimeTablesTemplate):\n  def\
+    \ __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
+    \    self.init_components(**properties)\n    #Loads the train times from database.\n\
+    \    self.repeating_panel_1.items = anvil.server.call('get_traintimes')\n\n  def\
+    \ BackButton_click(self, **event_args):\n    open_form('MainForm.DatePicker')\n\
+    \n  def LogOut_click(self, **event_args):\n    anvil.users.logout()\n    open_form('LoginForm')\n\
+    \n\n  "
   class_name: TimeTables
   id: HWIZPWUM5MY3PJJAIL2ZZ7AZN2HOJZNL
 - container:
@@ -294,16 +268,16 @@ forms:
     import anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport\
     \ anvil.tables.query as q\nfrom anvil.tables import app_tables\nfrom ... import\
     \ globalVariables\nfrom datetime import datetime\nfrom ... import globalVariables\n\
-    \n\n\nclass RowTemplate1(RowTemplate1Template):\n  def __init__(self, **properties):\n\
-    \    # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
-    \n    # Any code you write here will run when the form opens.\n\n  def link_1_click(self,\
-    \ **event_args):\n    alert(f\"From: {self.item['From']} \\nTo:{self.item['To']}\
-    \ \\nTime: {self.item['Time']}\")\n    global ticketInfoList\n    \n    \n   \
-    \ globalVariables.ticketInfoList = []\n    globalVariables.ticketInfoList.append(self.item['To'])\n\
+    \n'''\nThis code defines the functionality of the Train Time Table\n'''\n\nclass\
+    \ RowTemplate1(RowTemplate1Template):\n  def __init__(self, **properties):\n \
+    \   # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
+    \n#Function defining what happens when one of the links in the time table is clicked\n\
+    \  def link_1_click(self, **event_args):\n    alert(f\"From: {self.item['From']}\
+    \ \\nTo:{self.item['To']} \\nTime: {self.item['Time']}\")\n    global ticketInfoList\n\
+    \    \n    #Stores the train data, station travelling from, to, and at which time.\n\
+    \    globalVariables.ticketInfoList = []\n    globalVariables.ticketInfoList.append(self.item['To'])\n\
     \    globalVariables.ticketInfoList.append(self.item['From'])\n    globalVariables.ticketInfoList.append(f\"\
-    {self.item['Time']}, {globalVariables.pickedDate}\")\n    \n    #date_time = self.item['Time'].strftime(\"\
-    %H:%M:%S, %m/%d/%Y\")\n    #globalVariables.ticketInfoList.append(date_time)\n\
-    \n    #ticketList.append(anvil.users.get_user()['Name'])\n    \n    open_form('BuyTicketForm')\n\
+    {self.item['Time']}, {globalVariables.pickedDate}\")\n    \n    open_form('BuyTicketForm')\n\
     \    \n\n"
   class_name: TimeTables.RowTemplate1
   id: CBOYXIHDXL2R2L4VIY3PU2DI7PLZMXP6
@@ -348,23 +322,40 @@ forms:
     layout_properties: {slot: title}
   code: "from ._anvil_designer import LoginFormTemplate\nfrom anvil import *\nimport\
     \ anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query as q\n\
-    from anvil.tables import app_tables\nimport anvil.server\n\nclass LoginForm(LoginFormTemplate):\n\
+    from anvil.tables import app_tables\nimport anvil.server\n\n'''\nThis code defines\
+    \ the functionality of the Login page\n'''\n\nclass LoginForm(LoginFormTemplate):\n\
     \  def __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
-    \    self.init_components(**properties)\n\n    # Any code you write here will\
-    \ run when the form opens.\n    #anvil.server.call('say_hello','elias')\n    \n\
-    \    \n  \n  def LogoutButton_click(self, **event_args):\n    anvil.users.logout()\n\
-    \n    '''  def button_2_click(self, **event_args):\n    anvil.users.login_with_form()\n\
-    \    self.checkUserName()\n    #if anvil.users.get_user() != false:\n    \n  \
-    \  #app_tables.users.add_row(First Name= \"Elias\")\n    '''\n    \n\n  def checkUserName(self):\n\
-    \    user = anvil.users.get_user()#['email']\n    userName = user['Name']\n  \
-    \  if userName == None:\n      print(\"Ingen Navn\")\n      open_form('UserNameForm')\n\
-    \      \n    else:\n      open_form('MainForm')\n    \n\n  def LoginButton_click(self,\
-    \ **event_args):\n    anvil.users.login_with_form()\n    self.checkUserName()\n\
-    \n  def form_show(self, **event_args):\n    \"\"\"This method is called when the\
-    \ HTML panel is shown on the screen\"\"\"\n    pass\n\n\n\n  \n\n\n\n\n  \n\n\n\
-    \n"
+    \    self.init_components(**properties)\n\n    \n    \n  \n  def LogoutButton_click(self,\
+    \ **event_args):\n    anvil.users.logout()\n\n    \n#Function checking if user\
+    \ is registerd with full name or just email.\n  def checkUserHasName(self):\n\
+    \    user = anvil.users.get_user()\n    userName = user['Name']\n    if userName\
+    \ == None:\n      open_form('UserNameForm')\n      \n    else:\n      open_form('MainForm')\n\
+    \    \n\n  def LoginButton_click(self, **event_args):\n    anvil.users.login_with_form()\n\
+    \    self.checkUserHasName()\n\n    \n  def form_show(self, **event_args):\n \
+    \   \"\"\"This method is called when the HTML panel is shown on the screen\"\"\
+    \"\n    pass\n\n\n\n  \n\n\n\n\n  \n\n\n\n"
   class_name: LoginForm
   id: JBAKQL5DBY7FWOZ5ACHBH6I7JBHRDE66
+- container:
+    type: ColumnPanel
+    properties: {col_widths: '{}'}
+    event_bindings: {}
+  components:
+  - type: FileLoader
+    properties: {}
+    name: file_loader_1
+    layout_properties: {grid_position: 'LXEBUD,LFDWYN'}
+    event_bindings: {change: file_loader_1_change}
+  is_package: true
+  code: "from ._anvil_designer import AddTimeTableTemplate\nfrom anvil import *\n\
+    import anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport\
+    \ anvil.tables.query as q\nfrom anvil.tables import app_tables\n\n\n\n\nclass\
+    \ AddTimeTable(AddTimeTableTemplate):\n  def __init__(self, **properties):\n \
+    \   # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
+    \n    # Any code you write here will run when the form opens.\n  \n\n  def file_loader_1_change(self,\
+    \ file, **event_args):\n    anvil.server.call('store_data',file)\n\n"
+  class_name: AddTimeTable
+  id: EHI7ANSJY2WUSTQNM6E46U42DIOS2UWF
 - is_package: true
   container:
     type: HtmlTemplate
@@ -377,7 +368,7 @@ forms:
     layout_properties: {slot: default}
     components:
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
         visible: true, text: Hello - buy tickets please, font_size: null, font: '',
         spacing_above: small, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
@@ -390,13 +381,13 @@ forms:
         font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: buyTicketButton
-      layout_properties: {grid_position: 'ZHIRHA,MWKQQH'}
+      layout_properties: {grid_position: 'ZHIRHA,MWKQQH', row_background: ''}
       event_bindings: {click: buyTicketButton_click}
     - type: ColumnPanel
       properties: {col_widths: '{}'}
       name: column_panel_1
       layout_properties: {grid_position: 'BCBWXJ,PVRAUS'}
-      event_bindings: {hide: column_panel_1_hide}
+      event_bindings: {}
       components:
       - type: Button
         properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
@@ -445,13 +436,13 @@ forms:
   code: "from ._anvil_designer import MainFormTemplate\nfrom anvil import *\nimport\
     \ anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query\
     \ as q\nfrom anvil.tables import app_tables\nfrom .. import globalVariables\n\n\
-    \n\n\nclass MainForm(MainFormTemplate):\n  def __init__(self, **properties):\n\
-    \    # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
-    \n    # Any code you write here will run when the form opens.\n    #self.checkUser()\n\
-    \    \n\n  def LogoutButton_click(self, **event_args):\n    anvil.users.logout()\n\
-    \    open_form('LoginForm')\n\n    \n  def buyTicketButton_click(self, **event_args):\n\
-    \    open_form('MainForm.DatePicker')\n\n  def ShowTicketButton_click(self, **event_args):\n\
-    \    global ticketInfoList\n    user = anvil.users.get_user()\n    if user['Ticket']\
+    '''\nThis code defines the functionality of the Main page\n'''\n\n\nclass MainForm(MainFormTemplate):\n\
+    \  def __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
+    \    self.init_components(**properties)\n\n    \n\n  def LogoutButton_click(self,\
+    \ **event_args):\n    anvil.users.logout()\n    open_form('LoginForm')\n\n   \
+    \ \n  def buyTicketButton_click(self, **event_args):\n    open_form('MainForm.DatePicker')\n\
+    \n  def ShowTicketButton_click(self, **event_args):\n    global ticketInfoList\n\
+    \    #get info of user\n    user = anvil.users.get_user()\n    if user['Ticket']\
     \ == None:\n      alert(\"You have no ticket, please buy one\")\n    elif user['IsUpgraded']\
     \ == True:\n      alert(f\"Name: {user['Name']}\\nTicket type: Upgraded {user['Ticket']['type']}\
     \ \\nTicket valid on the train\\nfrom {user['Ticket']['tFrom']} to {user['Ticket']['to']}\
@@ -519,18 +510,18 @@ forms:
   code: "from ._anvil_designer import DatePickerTemplate\nfrom anvil import *\nimport\
     \ anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport anvil.tables.query\
     \ as q\nfrom anvil.tables import app_tables\nfrom ... import globalVariables\n\
-    from datetime import datetime\n\nclass DatePicker(DatePickerTemplate):\n  def\
-    \ __init__(self, **properties):\n    # Set Form properties and Data Bindings.\n\
-    \    self.init_components(**properties)\n    self.date_picker_1.format = \"%d-%m-%Y\"\
-    \n    \n\n    # Any code you write here will run when the form opens.\n    \n\n\
-    \  def date_picker_1_change(self, **event_args):\n    global pickedDate\n    \n\
-    \    dateString = self.date_picker_1.date\n    globalVariables.pickedDate = dateString\n\
-    \    #date = self.datepi.strftime(\"%H:%M:%S,\n    #globalVariables.pickedDate\
-    \ = self.date_picker_1.date\n    \n\n  def ConfirmDateButton_click(self, **event_args):\n\
-    \    if self.date_picker_1.date is None:\n      alert(\"You have to choose a date\"\
-    )\n    else:\n      open_form('TimeTables')\n\n  def BackButton_click(self, **event_args):\n\
-    \    open_form('MainForm')\n\n  def Logout_click(self, **event_args):\n    anvil.users.logout()\n\
-    \    open_form('LoginForm')\n\n\n\n\n"
+    from datetime import datetime\n'''\nThis code defines the functionality of the\
+    \ Date selection page\n'''\n\nclass DatePicker(DatePickerTemplate):\n  def __init__(self,\
+    \ **properties):\n    # Set Form properties and Data Bindings.\n    self.init_components(**properties)\n\
+    \    self.date_picker_1.format = \"%d-%m-%Y\"\n    \n    \n#function defining\
+    \ functionality of the date picker\n  def date_picker_1_change(self, **event_args):\n\
+    \    global pickedDate\n    #Saves the picked date to a gobal variable\n    dateString\
+    \ = self.date_picker_1.date\n    globalVariables.pickedDate = dateString\n   \
+    \ \n\n  def ConfirmDateButton_click(self, **event_args):\n    if self.date_picker_1.date\
+    \ is None:\n      alert(\"You have to choose a date\")\n    else:\n      open_form('TimeTables')\n\
+    \n  def BackButton_click(self, **event_args):\n    open_form('MainForm')\n\n \
+    \ def Logout_click(self, **event_args):\n    anvil.users.logout()\n    open_form('LoginForm')\n\
+    \n\n\n\n"
   class_name: MainForm.DatePicker
   id: XWU5DE4TZV4AKWJ7PPLVNYTXAQ4RY2F5
 - is_package: true
@@ -571,17 +562,19 @@ forms:
     properties: {html: '@theme:dashboard.html'}
   components:
   - type: ColumnPanel
-    properties: {col_widths: '{}'}
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      spacing_below: small, background: ''}
     name: content_panel
     layout_properties: {slot: default}
     components:
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '#000000',
         visible: true, text: 'Which ticket do you want to buy?', font_size: null,
         font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+        background: '', bold: true, underline: false, icon: ''}
       name: label_1
-      layout_properties: {grid_position: 'QUCEYN,RLYNCZ'}
+      layout_properties: {grid_position: 'QUCEYN,RLYNCZ', full_width_row: true}
     - type: Spacer
       properties: {height: 55}
       name: spacer_1
@@ -635,16 +628,20 @@ forms:
   code: "from ._anvil_designer import BuyTicketFormTemplate\nfrom anvil import *\n\
     import anvil.server\nimport anvil.users\nimport anvil.tables as tables\nimport\
     \ anvil.tables.query as q\nfrom anvil.tables import app_tables\nfrom .. import\
-    \ globalVariables\n\n\nclass BuyTicketForm(BuyTicketFormTemplate):\n  def __init__(self,\
+    \ globalVariables\n\n'''\nThis code defines the functionality of the Buy Ticket\
+    \ page\n'''\nclass BuyTicketForm(BuyTicketFormTemplate):\n  def __init__(self,\
     \ **properties):\n    global ticketInfoList\n    # Set Form properties and Data\
-    \ Bindings.\n    self.init_components(**properties)\n\n    # Any code you write\
-    \ here will run when the form opens.\n    print(globalVariables.ticketInfoList)\n\
-    \    \n    \n\n  def AdultTicketButton_click(self, **event_args):\n    global\
-    \ ticketInfoList\n    global pickedDate\n    userName = anvil.users.get_user()['Name']\
-    \ \n    anvil.server.call('buyAdultTicket',globalVariables.ticketInfoList[0],globalVariables.ticketInfoList[1],globalVariables.ticketInfoList[2])\n\
-    \    anvil.server.call('removeUpgradedTicket')\n    alert(f\"You have bought an\
-    \ Adult Ticket to {globalVariables.ticketInfoList[0]} from {globalVariables.ticketInfoList[1]}\\\
-    nThe train will depart at {globalVariables.ticketInfoList[2]}\")\n    globalVariables.pickedDate\
+    \ Bindings.\n    self.init_components(**properties)\n    \n    \n#Function defining\
+    \ what happens when the adult ticket button is clicked, \n#The childrens and senior\
+    \ buttons works in the same way.\n  def AdultTicketButton_click(self, **event_args):\n\
+    \    global ticketInfoList\n    global pickedDate\n    userName = anvil.users.get_user()['Name']\
+    \ \n    #Calls the server side function that buys an adult ticket, with the parameters\
+    \ describing from, to and time of train.\n    anvil.server.call('buyAdultTicket',globalVariables.ticketInfoList[0],globalVariables.ticketInfoList[1],globalVariables.ticketInfoList[2])\n\
+    \    #Deletes any upgrade that must be stored on the user\n    anvil.server.call('removeUpgradedTicket')\n\
+    \    #Display a window with what ticket has been bought\n    alert(f\"You have\
+    \ bought an Adult Ticket to {globalVariables.ticketInfoList[0]} from {globalVariables.ticketInfoList[1]}\\\
+    nThe train will depart at {globalVariables.ticketInfoList[2]}\")\n    #Deletes\
+    \ the variable containing selected train info\n    globalVariables.pickedDate\
     \ = None\n    open_form('MainForm')\n\n  def ChildrensTicketButton_click(self,\
     \ **event_args):\n    global ticketInfoList\n    userName = anvil.users.get_user()['Name']\
     \ \n    anvil.server.call('buyChildrensTicket',globalVariables.ticketInfoList[0],globalVariables.ticketInfoList[1],globalVariables.ticketInfoList[2])\n\
@@ -657,7 +654,8 @@ forms:
     \    anvil.server.call('removeUpgradedTicket')\n    alert(f\"You have bought a\
     \ Senior Ticket to {globalVariables.ticketInfoList[0]} from {globalVariables.ticketInfoList[1]}\\\
     nThe train will depart at {globalVariables.ticketInfoList[2]}\")\n    globalVariables.pickedDate\
-    \ = None\n    open_form('MainForm')\n\n  def backButton_click(self, **event_args):\n\
+    \ = None\n    open_form('MainForm')\n\n    '''\n    Functions defining the function\
+    \ of back-button and logout button.\n    '''\n  def backButton_click(self, **event_args):\n\
     \    open_form('MainForm.DatePicker')\n\n  def LogoutButton_click(self, **event_args):\n\
     \    anvil.users.logout()\n    open_form('LoginForm')\n\n\n\n\n"
   class_name: BuyTicketForm
@@ -774,42 +772,32 @@ theme:
 server_modules:
 - {name: BuyTickets, code: "import anvil.users\nimport anvil.tables as tables\nimport\
     \ anvil.tables.query as q\nfrom anvil.tables import app_tables\nimport anvil.server\n\
-    \n# This is a server module. It runs on the Anvil server,\n# rather than in the\
-    \ user's browser.\n#\n# To allow anvil.server.call() to call functions here, we\
-    \ mark\n# them with @anvil.server.callable.\n# Here is an example - you can replace\
-    \ it with your own:\n#\n#@anvil.server.callable\n\n\nfullPrice = 160\nreducedPrice\
-    \ = 80\n\n@anvil.server.callable\ndef buyAdultTicket(to, tFrom, time):\n  print(\"\
-    You have bought an Adult Ticket\")\n  user = anvil.users.get_user()\n  print(f\"\
-    To er {type(to)}, tFrom er {type(tFrom)}, time er {type(time)}\")\n  \n  user.update(Ticket=\
-    \ {'to': to, 'tFrom': tFrom, 'time': time, 'type': 'Adult Ticket','price': fullPrice})\n\
-    \  \n@anvil.server.callable\ndef buyChildrensTicket(to, tFrom, time):\n  print(\"\
-    You have bought a Childrens Ticket\")\n  user = anvil.users.get_user()\n  print(f\"\
-    To er {type(to)}, tFrom er {type(tFrom)}, time er {type(time)}\")\n  \n  user.update(Ticket=\
-    \ {'to': to, 'tFrom': tFrom, 'time': time, 'type': 'Childrens Ticket','price':\
-    \ reducedPrice})\n  \n  \n@anvil.server.callable\ndef buySeniorTicket(to, tFrom,\
-    \ time):\n  print(\"You have bought a Senior Ticket\")\n  user = anvil.users.get_user()\n\
+    \n'''\nThis server-side method contains the functions for buying tickets\n'''\n\
+    \nfullPrice = 160\nreducedPrice = 80\n\n@anvil.server.callable\ndef buyAdultTicket(to,\
+    \ tFrom, time):\n  print(\"You have bought an Adult Ticket\")\n  user = anvil.users.get_user()\n\
+    \  print(f\"To er {type(to)}, tFrom er {type(tFrom)}, time er {type(time)}\")\n\
+    \  \n  user.update(Ticket= {'to': to, 'tFrom': tFrom, 'time': time, 'type': 'Adult\
+    \ Ticket','price': fullPrice})\n  \n@anvil.server.callable\ndef buyChildrensTicket(to,\
+    \ tFrom, time):\n  print(\"You have bought a Childrens Ticket\")\n  user = anvil.users.get_user()\n\
+    \  print(f\"To er {type(to)}, tFrom er {type(tFrom)}, time er {type(time)}\")\n\
+    \  \n  user.update(Ticket= {'to': to, 'tFrom': tFrom, 'time': time, 'type': 'Childrens\
+    \ Ticket','price': reducedPrice})\n  \n  \n@anvil.server.callable\ndef buySeniorTicket(to,\
+    \ tFrom, time):\n  print(\"You have bought a Senior Ticket\")\n  user = anvil.users.get_user()\n\
     \  print(f\"To er {type(to)}, tFrom er {type(tFrom)}, time er {type(time)}\")\n\
     \  \n  user.update(Ticket= {'to': to, 'tFrom': tFrom, 'time': time, 'type': 'Senior\
     \ Ticket','price': reducedPrice})\n  ", id: T7HQOU2Z2QXDU7ON6Z5KFFLEYG44Y355}
 - {name: CancelTicket, code: "import anvil.users\nimport anvil.tables as tables\n\
     import anvil.tables.query as q\nfrom anvil.tables import app_tables\nimport anvil.server\n\
-    \n# This is a server module. It runs on the Anvil server,\n# rather than in the\
-    \ user's browser.\n#\n# To allow anvil.server.call() to call functions here, we\
-    \ mark\n# them with @anvil.server.callable.\n# Here is an example - you can replace\
-    \ it with your own:\n#\n# @anvil.server.callable\n# def say_hello(name):\n#  \
-    \ print(\"Hello, \" + name + \"!\")\n#   return 42\n#\n@anvil.server.callable\n\
-    def cancelTicket():\n  user = anvil.users.get_user()\n  anvil.server.call('removeUpgradedTicket')\n\
-    \  user['Ticket'] = None", id: XTN5UQSJLRTNGU3TRPQT5OMUUWR6UYWQ}
+    \n'''\nThis server-side method contains the function for cancelling the tickets\n\
+    '''\n\n@anvil.server.callable\ndef cancelTicket():\n  user = anvil.users.get_user()\n\
+    \  anvil.server.call('removeUpgradedTicket')\n  user['Ticket'] = None", id: XTN5UQSJLRTNGU3TRPQT5OMUUWR6UYWQ}
 - {name: TrainTable, code: "import anvil.users\nimport anvil.tables as tables\nimport\
     \ anvil.tables.query as q\nfrom anvil.tables import app_tables\nimport anvil.server\n\
-    import pandas as pd\nimport anvil.media\n\n# This is a server module. It runs\
-    \ on the Anvil server,\n# rather than in the user's browser.\n#\n# To allow anvil.server.call()\
-    \ to call functions here, we mark\n# them with @anvil.server.callable.\n# Here\
-    \ is an example - you can replace it with your own:\n#\n# @anvil.server.callable\n\
-    # def say_hello(name):\n#   print(\"Hello, \" + name + \"!\")\n#   return 42\n\
-    #\n\n@anvil.server.callable\ndef store_data(file):\n  with anvil.media.TempFile(file)\
-    \ as file_name:\n    df = pd.read_csv(file_name)\n    '''if file.content_type\
-    \ == 'text/csv':\n      df = pd.read_csv(file_name)\n    else:\n      df = pd.read_excel(file_name)'''\n\
+    import pandas as pd\nimport anvil.media\n\n'''\nThis server-side method contains\
+    \ the functions for updating the time table in database from csv or excel file\n\
+    '''\n\n@anvil.server.callable\ndef store_data(file):\n  with anvil.media.TempFile(file)\
+    \ as file_name:\n    df = pd.read_csv(file_name)\n    if file.content_type ==\
+    \ 'text/csv':\n      df = pd.read_csv(file_name)\n    else:\n      df = pd.read_excel(file_name)\n\
     \    for d in df.to_dict(orient=\"records\"):\n      # d is now a dict of {columnname\
     \ -> value} for this row\n      # We use Python's **kwargs syntax to pass the\
     \ whole dict as\n      # keyword arguments\n      app_tables.traintimes.add_row(**d)\n\
@@ -817,13 +805,10 @@ server_modules:
     \      \n      \n", id: JKHCET7NZ3PWS2DUPSDWRKML2DWV2TVP}
 - {name: UpgradeTicket, code: "import anvil.users\nimport anvil.tables as tables\n\
     import anvil.tables.query as q\nfrom anvil.tables import app_tables\nimport anvil.server\n\
-    \n# This is a server module. It runs on the Anvil server,\n# rather than in the\
-    \ user's browser.\n#\n# To allow anvil.server.call() to call functions here, we\
-    \ mark\n# them with @anvil.server.callable.\n# Here is an example - you can replace\
-    \ it with your own:\n#\n# @anvil.server.callable\n# def say_hello(name):\n#  \
-    \ print(\"Hello, \" + name + \"!\")\n#   return 42\n#\n@anvil.server.callable\n\
-    def upgradeTicket():\n  print(\"You have upgraded your experience, enjoy!\")\n\
-    \  user = anvil.users.get_user()\n  user.update(IsUpgraded= True)\n\n@anvil.server.callable\n\
-    def removeUpgradedTicket():\n  print(\"Upgraded Ticket is removed\")\n  user =\
-    \ anvil.users.get_user()\n  user.update(IsUpgraded= False)", id: 6BCLADOFVMBRVKPYCGZLW34TXQHJ4DIP}
+    \n'''\nThis server-side method contains the functions concidering upgrading tickets\n\
+    '''\n\n@anvil.server.callable\ndef upgradeTicket():\n  print(\"You have upgraded\
+    \ your experience, enjoy!\")\n  user = anvil.users.get_user()\n  user.update(IsUpgraded=\
+    \ True)\n\n@anvil.server.callable\ndef removeUpgradedTicket():\n  print(\"Upgraded\
+    \ Ticket is removed\")\n  user = anvil.users.get_user()\n  user.update(IsUpgraded=\
+    \ False)", id: 6BCLADOFVMBRVKPYCGZLW34TXQHJ4DIP}
 renamed: true
