@@ -1,0 +1,46 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:dashboard.html'}
+components:
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - type: RichText
+    properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
+      foreground: '', visible: true, font_size: null, content: Pick a date, font: '',
+      spacing_above: small, spacing_below: small, data: null, background: '', format: markdown}
+    name: rich_text_1
+    layout_properties: {grid_position: 'MBKHKT,VBSECS'}
+    event_bindings: {}
+  - type: DatePicker
+    properties: {}
+    name: date_picker_1
+    layout_properties: {grid_position: 'ZFNRRC,RIWIEA'}
+    event_bindings: {change: date_picker_1_change}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Confirm Date, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: ConfirmDateButton
+    layout_properties: {grid_position: 'SIDPVV,LDSWZI'}
+    event_bindings: {click: ConfirmDateButton_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Back, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: BackButton
+  layout_properties: {slot: sidebar}
+  event_bindings: {click: BackButton_click}
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Logout, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: Logout
+  layout_properties: {slot: sidebar}
+  event_bindings: {click: Logout_click}

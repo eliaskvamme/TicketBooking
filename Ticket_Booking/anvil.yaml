@@ -1,0 +1,63 @@
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {auto_create_missing_columns: true}
+- source: /runtime/services/anvil/users.yml
+  client_config: {allow_signup: true, enable_automatically: true, use_email: true,
+    confirm_email: false, email_from_address: eliaskvamme@outlook.com}
+  server_config: {user_table: users}
+startup: {type: form, module: LoginForm}
+package_name: Ticket_Booking
+allow_embedding: false
+name: Ticket Booking
+runtime_options: {version: 2, client_version: '3', server_version: python3-full}
+metadata: {}
+native_deps: {head_html: ''}
+db_schema:
+  users:
+    title: Users
+    client: full
+    server: full
+    columns:
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {width: 100}
+      type: bool
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: Name
+      admin_ui: {width: 200}
+      type: string
+    - name: signed_up
+      admin_ui: {width: 200}
+      type: datetime
+    - name: Ticket
+      admin_ui: {width: 835}
+      type: simpleObject
+    - name: IsUpgraded
+      admin_ui: {width: 200}
+      type: bool
+  traintimes:
+    title: TrainTimes
+    client: search
+    server: full
+    columns:
+    - name: From
+      admin_ui: {width: 200}
+      type: string
+    - name: To
+      admin_ui: {width: 200}
+      type: string
+    - name: Time
+      admin_ui: {width: 200}
+      type: string
+renamed: true
